@@ -24,3 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.iconSeparator {
+	font-size: 1.7em;
+	color: #86c6ff;
+	position: absolute;
+	top: 20%;
+	left: 80%;
+	border: 2px solid transparent;
+	border-radius: 2em;
+	background: #86c6ff4d;
+}

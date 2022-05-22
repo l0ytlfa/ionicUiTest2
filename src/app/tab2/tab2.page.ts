@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  items: any[] = [];
+
+  constructor() {
+    for(let idx=1;idx<200;idx++){
+      this.items.push({r1:'title here! '+idx,r2:'sub title here',r3:'description is long thing'});
+    }
+  }
 
 }

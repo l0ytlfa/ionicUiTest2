@@ -1,17 +1,165 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [scrollY]="false" appAnimationPage2 [scrollEvents]="true"
+  [imageRef]="imgRef" [headerRef]="masterHeaderRef"  [headerTextRef]="masterHeaderText" [barSearchRef]="DRAGHDR" [mover]="MOVER" [moverBadge]="MOVERBADGE" [barProductsCat]="pgs"
+  [tabBottom]="fbRefBottom" [vse]="VSE" [spacer]="SPACER" [content]="cnt" [fabLeft1]="fableft1" [fabRight1]="fabright1" [fabRight2]="fabright2" [bottomFab]="bottomfab" [imageText]="imageText"
+  [style.background]="'black'" #cnt>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- master header  -->
+  <ion-row [style.z-index]="'10'" [style.position]="'fixed'" [style.width]="'100%'" [style.background]="'rgba(94, 164, 253, 0.95)'"
+    [style.opacity]="'0%'" [style.height]="'5.1em'" [style.justify-content]="'center'" [style.align-items]="'center'"
+    #masterHeaderRef>
+    <ion-col size="2">
+     
+    </ion-col>
+    <ion-col size="8"> 
+      <h5 [style.margin]="'0'" [style.padding-top]="'1.5em'" [style.padding-left]="'1.5em'" #masterHeaderText>sushi pasticceria!</h5>
+    </ion-col>
+    <ion-col size="2">
+    </ion-col>
+  </ion-row>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <!-- fabs header https://ionic.io/ionicons -->
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
+  [style.left]="'-1em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.85,0.85)'" >
+  <ion-fab-button size="small" #fableft1 style="--box-shadow:0">  
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
+  [style.right]="'3em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.85,0.85)'" >
+  <ion-fab-button size="small" #fabright1 style="--box-shadow:0">
+    <ion-icon name="layers-outline"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>
+  
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
+  [style.right]="'0em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.85,0.85)'" >
+  <ion-fab-button size="small" #fabright2 style="--box-shadow:0">
+    <ion-icon name="cart"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>  
+
+  <!-- mover gripper -->
+  <div [style.z-index]="'10'" [style.position]="'fixed'" [style.width]="'0%'" [style.right]="'0px'" [style.top]="'200px'"
+  [style.height]="'3em'"[style.background]="'red'" [style.background]="'red'" [style.background]="'rgba(94, 164, 253, 0.74)'"
+  [style.border-top-left-radius]="'1em'" [style.border-bottom-left-radius]="'1em'" #MOVER>
+    <ion-badge [style.position]="'absolute'" [style.right]="'2.6em'" [style.opacity]="'0%'" color="primary" 
+    [style.visibility]="'hidden'" #MOVERBADGE>11</ion-badge>
+    <ion-icon name="list" [style.padding-top]="'0.7em'" [style.padding-left]="'0.4em'" [style.color]="'white'"
+    [style.font-size]="'1.25em'"></ion-icon>
+  </div>
+
+  <!-- header on down drag-->
+  <ion-row [style.opacity]="'0%'" [style.z-index]="'10'" [style.position]="'fixed'" [style.width]="'100%'" [style.background]="'black'"
+    [style.height]="'5.6em'" [style.padding-top]="'2.9em'" #DRAGHDR>
+    <ion-col size="1">
+      <ion-icon name="search" [style.padding-top]="'0.4em'" [style.padding-left]="'0.4em'" [style.color]="'white'">
+      </ion-icon>
+    </ion-col>
+    <ion-col size="11">
+      <ion-input placeholder="  cerca il tuo prodotto" [style.border-radius]="'0.3em'" [style.height]="'1.7em'"
+        [style.background]="'#383a3e'" [style.color]="'white'"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <!-- header image-->
+  <!-- <ion-img src="../../assets/category_hdr_sushi.JPG" [style.top]="'2em'" [style.z-index]="'0'" [style.position]="'fixed'"
+    [style.width]="'100%'"  #imgRef></ion-img> -->
+  
+  <div  [style.z-index]="'0'" [style.position]="'fixed'" [style.width]="'100%'" [style.height]="'22em'"
+    [style.background-image] ="'linear-gradient(transparent, black 80%), url(../../assets/category_hdr_sushi.JPG)'" [style.background-size]="'contain'" #imgRef>
+    <h1 style="position: absolute;bottom:33%;left:5%" #imageText>sushi pasticceria!</h1>
+  </div>
+
+  <!-- search bar -->
+  <ion-row [style.z-index]="'10'" [style.position]="'fixed'" [style.width]="'100%'" [style.background]="'#8080802b'"
+    [style.opacity]="'0%'" [style.top]="'4.8em'" #barRef>
+    <ion-col size="1">
+      <ion-icon name="search" [style.padding-top]="'0.4em'" [style.padding-left]="'0.4em'" [style.color]="'white'">
+      </ion-icon>
+    </ion-col>
+    <ion-col size="11">
+      <ion-input placeholder="  cerca il tuo prodotto" [style.border-radius]="'0.3em'" [style.height]="'1.7em'"
+        [style.background]="'#383a3e'" [style.color]="'white'"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <!-- products group selector -->
+  <ion-row [style.z-index]="'10'" [style.position]="'fixed'" [style.height]="'2.8em'" [style.width]="'100%'"
+    [style.background]="'black'" [style.opacity]="'0%'" [style.top]="'94.5%'" slot="fixed"  #barRefBottom>
+    <div [style.height]="'1em'" [style.top]="'1em'" [style.left]="'2.6em'" [style.width]="'3.2em'" [style.z-index]="'1'"
+      [style.border-radius]="'0.6em'" [style.background]="'#3880ff'" [style.position]="'absolute'" #divcover></div>
+    <ion-slides (ionSlideTap)="slidePress($event)" pager="false" [options]="slideOpts" [style.padding-top]="'0.3em'" #pgs>
+      <ion-slide [style.height]="'2em'">
+        <ion-badge [style.width]="'7em'" [style.background]="'transparent'">sushi</ion-badge>
+      </ion-slide>
+      <ion-slide [style.height]="'2em'">
+        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">DYP frozen</ion-badge>
+      </ion-slide>
+      <ion-slide [style.height]="'2em'">
+        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">Atelier</ion-badge>
+      </ion-slide>
+      <ion-slide [style.height]="'2em'">
+        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">Altro</ion-badge>
+      </ion-slide>
+      <ion-slide [style.height]="'2em'">
+        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">Italian style</ion-badge>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+
+
+ 
+  <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="80" minBufferPx="720" maxBufferPx="800" #VSE style="height:100vh !important">
+    <div class="spacer" [style.height]="'18em'" #SPACER [style.margin-bottom]="'0em'"></div>
+
+    <ion-list>
+      <span *cdkVirtualFor="let item of items; let odd = odd; let i = index">
+       
+        <ion-list-header [style.color]="'white'" [style.height]="'72px'" *ngIf="i===10"  [style.margin-top]="'8px'">
+          <span [style.height]="'100%'">
+          <h2 [style.color]="'white'" [style.margin-bottom]="'0px'"  [style.margin-top]="'0.2em'">{{item.r1}}</h2>
+          <span [style.color]="'darkgray'" [style.font-size]="'0.7em'">here my special category for all</span>
+          <ion-icon src="../../assets/local_1.svg" class="iconSeparator"></ion-icon> 
+        </span>
+        </ion-list-header>
+
+        <ion-item [style.height]="'80px'" *ngIf="i!==10">
+          <ion-avatar slot="start">
+            <img src="../../assets/salmonUramaki.JPG" />
+          </ion-avatar>
+          <ion-label>
+            <h2 [style.color]="'white'">{{item.r1}}</h2>
+            <h3 [style.color]="'white'">{{item.r2}}</h3>
+            <p [style.color]="'darkgrey'">{{item.r3}}.</p>
+          </ion-label>
+        </ion-item>
+      </span>
+    </ion-list>
+
+    <div class="spacer" [style.height]="'5em'" #SPACER [style.margin-bottom]="'0em'"></div>
+
+  </cdk-virtual-scroll-viewport>
+
+  <!-- bottom fab -->
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" style="transform:translate3d(100px,0,0)" #bottomfab>
+    <ion-fab-button  class="buttonTrasparent">
+      <ion-icon md="caret-up" ios="fish-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>

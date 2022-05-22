@@ -5,8 +5,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { AnimationPage2Directive } from '..//directives/animation-page2.directive';
+
 
 @NgModule({
   imports: [
@@ -14,8 +17,9 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule
+    Tab2PageRoutingModule,
+    ScrollingModule
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page,AnimationPage2Directive]
 })
 export class Tab2PageModule {}
