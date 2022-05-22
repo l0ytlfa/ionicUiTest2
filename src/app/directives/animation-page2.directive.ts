@@ -152,12 +152,6 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
     //---> patch DOM
     this.domCtrl.write(() => {
 
-      //--> ANIMATE SCALE
-      const an1 = this.animationCtrl.create()
-                .addElement(this.imageRef)
-                .duration(10)
-                .to('transform', 'scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1) translate3d(0,' + imageMoveUp + 'px,0)').play();
-
       //--> fab buttons fade
       this.renderer.setStyle(this.fabLeft1.el, `--background`, this.getRgbString(this.fabLeft1Rgb, fabButtonsFade), 2);
       this.renderer.setStyle(this.fabRight1.el, `--background`, this.getRgbString(this.fabRight1Rgb, fabButtonsFade), 2);
@@ -167,20 +161,15 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
       this.renderer.setStyle(this.imageText, 'bottom', imageTextUp + '%');
       
 
-      //this.renderer.setStyle(this.imageRef, 'transform', 'translate3d(0,' + imageMoveUp + 'px,0)  scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1)');
-      //this.renderer.setStyle(this.imageRef, 'transform', 'translate3d(0,' + imageMoveUp + 'px,0)');
-
       this.renderer.setStyle(this.imageRef, 'opacity', imageOpacity + '%');
       this.renderer.setStyle(this.headerRef.el, 'opacity', masterHeaderOpacity + '%');
       this.renderer.setStyle(this.headerTextRef, 'opacity', masterHeaderTextOpacity + '%');
-
-      //this.renderer.setStyle(this.barSearchRef.el, 'opacity', barOpacity + '%');
 
       this.renderer.setStyle(this.mover, 'width', moveWidth + '%');
       this.renderer.setStyle(this.moverBadge.el, 'opacity', bagseMoverOpacity + '%');
 
 
-      /*if (this.scrollDirection === 'U' && this.startScrollPosition === 0) {
+      if (this.scrollDirection === 'U' && this.startScrollPosition === 0) {
 
         const spacerH = this.searchBarHeight / 2 + this.imageHeight;
         const an1 = this.animationCtrl.create()
@@ -191,29 +180,29 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
         const an2 = this.animationCtrl.create()
           .addElement(this.barSearchRef.el)
           .to('opacity', '100%')
-          .duration(100);
+          .duration(200);
 
         const an3 = this.animationCtrl.create()
           .addElement(this.imageRef)
           .to('top', this.searchBarHeight + 'px')
-          .duration(100);
+          .duration(200);
 
-        const deltaTot = this.searchBarHeight / 2 + this.masterTopOffset;
+        const deltaTot = this.searchBarHeight / 1.8 + this.masterTopOffset;
 
         const an4 = this.animationCtrl.create()
           .addElement(this.fabLeft1.el.parentElement)
           .to('top', deltaTot + 'px')
-          .duration(100);
+          .duration(200);
 
         const an5 = this.animationCtrl.create()
           .addElement(this.fabRight1.el.parentElement)
           .to('top', deltaTot + 'px')
-          .duration(100);
+          .duration(200);
 
         const an6 = this.animationCtrl.create()
           .addElement(this.fabRight2.el.parentElement)
           .to('top', deltaTot + 'px')
-          .duration(100);
+          .duration(200);
 
         this.animationCtrl.create()
           .addAnimation([an1, an2, an3, an4, an5, an6]).play();
@@ -256,7 +245,17 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
 
         this.expandedHeader = false;
 
-      }*/
+      }
+
+      if (this.expandedHeader === false){
+
+        //--> animate image scale (bump) + moveup
+        this.animationCtrl.create()
+                  .addElement(this.imageRef)
+                  .duration(10)
+                  .to('transform', 'scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1) translate3d(0,' + imageMoveUp + 'px,0)').play();
+
+      }
 
     });
 
