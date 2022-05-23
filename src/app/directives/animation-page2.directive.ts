@@ -15,7 +15,7 @@ interface rgbResult {
 @Directive({
   selector: '[appAnimationPage2]'
 })
-export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked {
+export class AnimationPage2Directive implements AfterViewInit {
 
   @Input() imageRef: any;       //<-- top master image of category
   @Input() headerRef: any;      //<-- master top header
@@ -57,7 +57,6 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
   constructor(private element: ElementRef, private domCtrl: DomController, private animationCtrl: AnimationController
     , private gestureCtrl: GestureController, private renderer: Renderer2) {
     //--> just injection
-    console.log('Animation directive 2 active!');
   }
 
   @HostListener('ionScroll', ['$event']) onContentScroll(ev: any) {
@@ -70,7 +69,6 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
     let imageMoveUp;
     let imagescaleDown;
     let imageOpacity;
-    let barOpacity;
     let masterHeaderOpacity;
     let moveWidth;
     let bagseMoverOpacity;
@@ -123,22 +121,22 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
       imagescaleDown = 1;
       imageOpacity = this.easeLinear(scrollTop, 100, 0, 200);
 
-      barOpacity = this.easeLinear(scrollTop, 0, 100, 400, 300);
       masterHeaderOpacity = this.easeLinear(scrollTop, 0, 100, 550, 180);
-      masterHeaderTextOpacity = this.easeLinear(scrollTop, 0, 100, 500, 300);
+      masterHeaderTextOpacity = this.easeLinear(scrollTop, 0, 100, 700, 450);
 
       moveWidth = this.easeLinear(scrollTop, 0, 7.5, 400, 300);
       bagseMoverOpacity = this.easeLinear(scrollTop, 0, 100, 400, 300);
 
-      fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 150, 20);
+      fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 80, 10);
       imageTextOpacity = this.easeLinear(scrollTop, 100, 0, 150, 20);
-      imageTextUp = this.easeLinear(scrollTop, 33, 60, 150, 0);
+      imageTextUp = this.easeLinear(scrollTop, 33, 70, 150, 0);
 
     } else {
+
+      //--> only in iOS: drag down the scroll 
       imageMoveUp = 0;
       imagescaleDown = this.easeLinear(-scrollTop, 1, 2.5, 300);
       imageOpacity = 100;
-      barOpacity = 0;
       moveWidth = 0;
       imageTextUp = 33;
       bagseMoverOpacity = 0;
@@ -169,23 +167,24 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
       this.renderer.setStyle(this.moverBadge.el, 'opacity', bagseMoverOpacity + '%');
 
 
+      //--> reveal / hide the top search bar
       if (this.scrollDirection === 'U' && this.startScrollPosition === 0) {
 
         const spacerH = this.searchBarHeight / 2 + this.imageHeight;
         const an1 = this.animationCtrl.create()
           .addElement(this.spacer)
           .to('height', spacerH + 'px')
-          .duration(200);
+          .duration(100);
 
         const an2 = this.animationCtrl.create()
           .addElement(this.barSearchRef.el)
           .to('opacity', '100%')
-          .duration(200);
+          .duration(100);
 
         const an3 = this.animationCtrl.create()
           .addElement(this.imageRef)
           .to('top', this.searchBarHeight + 'px')
-          .duration(200);
+          .duration(100);
 
         const deltaTot = this.searchBarHeight / 1.8 + this.masterTopOffset;
 
@@ -247,12 +246,13 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
 
       }
 
+      //--> avoid image scale effect when revealing the search bar
       if (this.expandedHeader === false){
 
-        //--> animate image scale (bump) + moveup
+        //--> animate image scale (bump) + move down
         this.animationCtrl.create()
                   .addElement(this.imageRef)
-                  .duration(10)
+                  .duration(100)
                   .to('transform', 'scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1) translate3d(0,' + imageMoveUp + 'px,0)').play();
 
       }
@@ -261,47 +261,12 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
 
   }
 
-  getRgbString(rgbObject: rgbResult, opacity: number): string {
-    return 'rgb(' + this.fabLeft1Rgb.r + ',' + this.fabLeft1Rgb.g + ',' + this.fabLeft1Rgb.b + ',' + opacity + ')';
-  }
-
-  hexToRgb(hex): rgbResult {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
-
-  easeLinear(actualTime, originalValue, targetValue, totalTime, initialCutoff = 0) {
-
-    if (actualTime < initialCutoff) {
-      return originalValue;
-    }
-
-    //--> internal shift values
-    const internalActualTime = actualTime - initialCutoff;
-    const internalTotalTime = totalTime - initialCutoff;
-
-    if (actualTime > totalTime) {
-      return targetValue;
-    }
-
-    const c: number = targetValue - originalValue;
-    return (c * internalActualTime / internalTotalTime + originalValue).toFixed(2);
-  }
-
-
-  ngAfterViewChecked() {
-
-  }
-
   ngAfterViewInit() {
 
+    //--> reference to master tabs
     this.ionTabs = document.querySelector('ion-tab-bar');
 
-    //--> drag (over scroll) event tracker
+    //--> catch pan movement (not captured), to get direction 
     this.gestureCtrl.create({
       el: this.content.el,
       threshold: 15,
@@ -324,7 +289,8 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
       }
     }, true).enable();
 
-    //---> mover list element drag (y)
+
+    //---> catch pan movement of mover notch
     this.gestureCtrl.create({
       el: this.mover,
       threshold: 15,
@@ -370,7 +336,9 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
       direction: 'y',
       gesturePriority: 100
     }, true).enable();
+    
 
+    //--> list index change: trace end of the list show + update mover notch text
     this.vse.scrolledIndexChange.subscribe(function($event) {
 
       this.domCtrl.write(() => {
@@ -394,12 +362,14 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
       }
     }.bind(this));
 
-    this.vse.elementScrolled()
-      .subscribe(function(event) {
+
+    //this.vse.elementScrolled()
+    this.vse.scrollDispatcher.scrolled(1)
+    .subscribe(function(event) {
+
         this.animateOnScroll(this.vse.measureScrollOffset());
 
-        //--> show / hide bottom FAB
-
+          //--> show / hide bottom FAB
           if (this.lastScrollOffset > 0) {
 
             if (this.vse.measureScrollOffset() > this.lastScrollOffset && this.vse.measureScrollOffset() > 350 && this.bottomFabVisible === false && this.stopFooterMovement === false) {
@@ -408,6 +378,8 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
                 .addElement(this.ionTabs)
                 .duration(160)
                 .to('height', '0px').onFinish(() => {
+
+                  //--> show FAB after bar disapperar
                   this.animationCtrl.create()
                     .addElement(this.bottomFab.el)
                     .duration(250)
@@ -423,6 +395,7 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
                 .duration(160)
                 .to('height', this.prevIonTabBarHeight + 'px').play();
 
+              //--> hide FAB immediately
               this.animationCtrl.create()
                 .addElement(this.bottomFab.el)
                 .duration(1)
@@ -434,7 +407,42 @@ export class AnimationPage2Directive implements AfterViewInit, AfterViewChecked 
           }
 
         this.lastScrollOffset = this.vse.measureScrollOffset();
+
       }.bind(this));
+  }
+
+
+  //------------------------------------> Utilities functions
+
+  getRgbString(rgbObject: rgbResult, opacity: number): string {
+    return 'rgb(' + this.fabLeft1Rgb.r + ',' + this.fabLeft1Rgb.g + ',' + this.fabLeft1Rgb.b + ',' + opacity + ')';
+  }
+
+  hexToRgb(hex): rgbResult {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  easeLinear(actualTime, originalValue, targetValue, totalTime, initialCutoff = 0) {
+
+    if (actualTime < initialCutoff) {
+      return originalValue;
+    }
+
+    //--> internal shift values
+    const internalActualTime = actualTime - initialCutoff;
+    const internalTotalTime = totalTime - initialCutoff;
+
+    if (actualTime > totalTime) {
+      return targetValue;
+    }
+
+    const c: number = targetValue - originalValue;
+    return (c * internalActualTime / internalTotalTime + originalValue).toFixed(2);
   }
 
 }
