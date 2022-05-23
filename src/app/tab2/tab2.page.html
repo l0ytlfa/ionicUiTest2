@@ -1,6 +1,6 @@
 <ion-content [scrollY]="false" appAnimationPage2 [scrollEvents]="true"
   [imageRef]="imgRef" [headerRef]="masterHeaderRef"  [headerTextRef]="masterHeaderText" [barSearchRef]="DRAGHDR" [mover]="MOVER" [moverBadge]="MOVERBADGE" [barProductsCat]="pgs"
-  [tabBottom]="fbRefBottom" [vse]="VSE" [spacer]="SPACER" [content]="cnt" [fabLeft1]="fableft1" [fabRight1]="fabright1" [fabRight2]="fabright2" [bottomFab]="bottomfab" [imageText]="imageText"
+  [vse]="VSE" [spacer]="SPACER" [content]="cnt" [fabLeft1]="fableft1" [fabRight1]="fabright1" [fabRight2]="fabright2" [bottomFab]="bottomfab" [imageText]="imageText"
   [style.background]="'black'" #cnt>
 
   <!-- master header  -->
@@ -63,10 +63,7 @@
   </ion-row>
 
   <!-- header image-->
-  <!-- <ion-img src="../../assets/category_hdr_sushi.JPG" [style.top]="'2em'" [style.z-index]="'0'" [style.position]="'fixed'"
-    [style.width]="'100%'"  #imgRef></ion-img> -->
-  
-  <div  [style.z-index]="'0'" [style.position]="'fixed'" [style.width]="'100%'" [style.height]="'22em'"
+  <div  [style.z-index]="'0'" [style.position]="'fixed'" [style.width]="'100%'" [style.height]="'22em'" style="transition: transform 0.1s;"
     [style.background-image] ="'linear-gradient(transparent, black 80%), url(../../assets/category_hdr_sushi.JPG)'" [style.background-size]="'contain'" #imgRef>
     <h1 style="position: absolute;bottom:33%;left:5%" #imageText>sushi pasticceria!</h1>
   </div>

@@ -21,11 +21,10 @@ export class AnimationPage2Directive implements AfterViewInit {
   @Input() headerRef: any;      //<-- master top header
   @Input() headerTextRef: any;  //<-- text in header 
   @Input() barSearchRef: any;   //<-- top appearing search bar
-  @Input() fabLeft1: any;
-  @Input() fabRight1: any;
-  @Input() fabRight2: any;
-  @Input() bottomFab: any;
-  @Input() tabBottom: any;
+  @Input() fabLeft1: any;       //<-- FAB header
+  @Input() fabRight1: any;      //<-- FAB header
+  @Input() fabRight2: any;      //<-- FAB header
+  @Input() bottomFab: any;      //<-- FAB bottom (reveal)
   @Input() barProductsCat: any; //<-- products sub category bar
   @Input() vse: any;            //<-- vistual scroll viewport (cdk)
   @Input() content: any;        //<-- master content reference
@@ -62,7 +61,6 @@ export class AnimationPage2Directive implements AfterViewInit {
   @HostListener('ionScroll', ['$event']) onContentScroll(ev: any) {
     //--> not used with Virtual scroll list
   }
-
 
   animateOnScroll(scrollTop) {
 
@@ -191,17 +189,17 @@ export class AnimationPage2Directive implements AfterViewInit {
         const an4 = this.animationCtrl.create()
           .addElement(this.fabLeft1.el.parentElement)
           .to('top', deltaTot + 'px')
-          .duration(200);
+          .duration(100);
 
         const an5 = this.animationCtrl.create()
           .addElement(this.fabRight1.el.parentElement)
           .to('top', deltaTot + 'px')
-          .duration(200);
+          .duration(100);
 
         const an6 = this.animationCtrl.create()
           .addElement(this.fabRight2.el.parentElement)
           .to('top', deltaTot + 'px')
-          .duration(200);
+          .duration(100);
 
         this.animationCtrl.create()
           .addAnimation([an1, an2, an3, an4, an5, an6]).play();
