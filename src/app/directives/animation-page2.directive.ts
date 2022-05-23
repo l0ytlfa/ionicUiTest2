@@ -155,7 +155,7 @@ export class AnimationPage2Directive implements AfterViewInit {
 
       this.renderer.setStyle(this.imageText, 'opacity', imageTextOpacity + '%');
       this.renderer.setStyle(this.imageText, 'bottom', imageTextUp + '%');
-      
+
 
       this.renderer.setStyle(this.imageRef, 'opacity', imageOpacity + '%');
       this.renderer.setStyle(this.headerRef.el, 'opacity', masterHeaderOpacity + '%');
@@ -177,7 +177,7 @@ export class AnimationPage2Directive implements AfterViewInit {
         const an2 = this.animationCtrl.create()
           .addElement(this.barSearchRef.el)
           .to('opacity', '100%')
-          .duration(100);
+          .duration(150);
 
         const an3 = this.animationCtrl.create()
           .addElement(this.imageRef)
@@ -245,13 +245,13 @@ export class AnimationPage2Directive implements AfterViewInit {
       }
 
       //--> avoid image scale effect when revealing the search bar
-      if (this.expandedHeader === false){
+      if (this.expandedHeader === false) {
 
         //--> animate image scale (bump) + move down
         this.animationCtrl.create()
-                  .addElement(this.imageRef)
-                  .duration(100)
-                  .to('transform', 'scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1) translate3d(0,' + imageMoveUp + 'px,0)').play();
+          .addElement(this.imageRef)
+          .duration(100)
+          .to('transform', 'scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1) translate3d(0,' + imageMoveUp + 'px,0)').play();
 
       }
 
@@ -334,18 +334,18 @@ export class AnimationPage2Directive implements AfterViewInit {
       direction: 'y',
       gesturePriority: 100
     }, true).enable();
-    
+
 
     //--> list index change: trace end of the list show + update mover notch text
-    this.vse.scrolledIndexChange.subscribe(function($event) {
+    this.vse.scrolledIndexChange.subscribe(function ($event) {
 
       this.domCtrl.write(() => {
         this.moverBadge.el.innerHTML = 'in index ' + $event;
       });
 
-      if (this.vse.getDataLength() === this.vse.getRenderedRange().end ){
+      if (this.vse.getDataLength() === this.vse.getRenderedRange().end) {
         this.stopFooterMovement = true;
-      }else{
+      } else {
         this.stopFooterMovement = false;
       }
 
@@ -362,51 +362,50 @@ export class AnimationPage2Directive implements AfterViewInit {
 
 
     //this.vse.elementScrolled()
-    this.vse.scrollDispatcher.scrolled(1)
-    .subscribe(function(event) {
+    this.vse.scrollDispatcher.scrolled(1).subscribe(function (event) {
 
-        this.animateOnScroll(this.vse.measureScrollOffset());
+      this.animateOnScroll(this.vse.measureScrollOffset());
 
-          //--> show / hide bottom FAB
-          if (this.lastScrollOffset > 0) {
+      //--> show / hide bottom FAB
+      if (this.lastScrollOffset > 0) {
 
-            if (this.vse.measureScrollOffset() > this.lastScrollOffset && this.vse.measureScrollOffset() > 350 && this.bottomFabVisible === false && this.stopFooterMovement === false) {
+        if (this.vse.measureScrollOffset() > this.lastScrollOffset && this.vse.measureScrollOffset() > 350 && this.bottomFabVisible === false && this.stopFooterMovement === false) {
 
-              const an1 = this.animationCtrl.create()
-                .addElement(this.ionTabs)
-                .duration(160)
-                .to('height', '0px').onFinish(() => {
+          const an1 = this.animationCtrl.create()
+            .addElement(this.ionTabs)
+            .duration(160)
+            .to('height', '0px').onFinish(() => {
 
-                  //--> show FAB after bar disapperar
-                  this.animationCtrl.create()
-                    .addElement(this.bottomFab.el)
-                    .duration(250)
-                    .to('transform', 'translate3d(0,0,0)').play();
-                }).play();
-
-              this.bottomFabVisible = true;
-
-            } else if (this.vse.measureScrollOffset() < this.lastScrollOffset && this.bottomFabVisible === true) {
-
-              const an1 = this.animationCtrl.create()
-                .addElement(this.ionTabs)
-                .duration(160)
-                .to('height', this.prevIonTabBarHeight + 'px').play();
-
-              //--> hide FAB immediately
+              //--> show FAB after bar disapperar
               this.animationCtrl.create()
                 .addElement(this.bottomFab.el)
-                .duration(1)
-                .to('transform', 'translate3d(100px,0,0)').play();
+                .duration(250)
+                .to('transform', 'translate3d(0,0,0)').play();
+            }).play();
 
-              this.bottomFabVisible = false;
+          this.bottomFabVisible = true;
 
-            }
-          }
+        } else if (this.vse.measureScrollOffset() < this.lastScrollOffset && this.bottomFabVisible === true) {
 
-        this.lastScrollOffset = this.vse.measureScrollOffset();
+          const an1 = this.animationCtrl.create()
+            .addElement(this.ionTabs)
+            .duration(160)
+            .to('height', this.prevIonTabBarHeight + 'px').play();
 
-      }.bind(this));
+          //--> hide FAB immediately
+          this.animationCtrl.create()
+            .addElement(this.bottomFab.el)
+            .duration(1)
+            .to('transform', 'translate3d(100px,0,0)').play();
+
+          this.bottomFabVisible = false;
+
+        }
+      }
+
+      this.lastScrollOffset = this.vse.measureScrollOffset();
+
+    }.bind(this));
   }
 
 

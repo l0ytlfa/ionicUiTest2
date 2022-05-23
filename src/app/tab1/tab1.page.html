@@ -1,17 +1,130 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [scrollY]="true" appAnimationPage1 [scrollEvents]="true" [headerRef]="masterHeaderRef" [headerRef2]="masterHeaderRef2"
+  [spacer]="SPACER" [content]="cnt" [fabLeft1]="fableft1" [fabRight1]="fabright1" [chip]="chipLocation"
+  [fabRight2]="fabright2" [bottomFab]="bottomfab" [style.background]="'black'" #cnt>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- master header 1 -->
+  <ion-row [style.z-index]="'10'" [style.position]="'fixed'" [style.width]="'100%'"
+    [style.background]="'rgba(94, 164, 253, 0.95)'" [style.opacity]="'100%'" [style.height]="'5.1em'"
+    [style.align-items]="'center'" #masterHeaderRef>
+    <ion-col size="8">
+      <ion-img src="../../assets/logo-sito-big-2.png" style="padding-top:1.8em;width:50%"></ion-img>
+    </ion-col>
+    <ion-col size="2">
+    </ion-col>
+    <ion-col size="2">
+    </ion-col>
+  </ion-row>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- master header 2 -->
+  <ion-row [style.z-index]="'30'" [style.position]="'fixed'" [style.width]="'100%'"
+    [style.background]="'rgba(94, 164, 253, 0.95)'" [style.opacity]="'100%'" [style.height]="'5.1em'"
+    [style.justify-content]="'center'" [style.align-items]="'center'" [style.top]="'5.1em'" #masterHeaderRef2>
+    <ion-col size="2">
+    </ion-col>
+    <ion-col size="8">
+    </ion-col>
+    <ion-col size="2">
+    </ion-col>
+  </ion-row>
+
+  <!-- fabs header https://ionic.io/ionicons -->
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" 
+    [style.left]="'-1em'" [style.top]="'6em'" [style.transform]="'scale(0.85,0.85)'" style="color:black" #fableft1>
+    <ion-fab-button size="small"  style="--box-shadow:0;--background:transparent" color="black">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-fab-button>
+    <div style="margin-top:-0.9em;font-size:0.8em">preferiti</div>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'"  #fabright1
+    [style.right]="'0.8em'" [style.top]="'6em'" [style.transform]="'scale(0.85,0.85)'" style="color:black">
+    <div class="iconText">Categorie</div>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" 
+    [style.right]="'1em'" [style.top]="'var(--offset-top-button2)'" [style.transform]="'scale(0.85,0.85)'" style="color:black"  #fabright2>
+    <ion-fab-button size="small" style="--box-shadow:0;--background:transparent" color="black">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+    <div style="margin-top:-0.9em;font-size:0.8em;padding-left:0.6em">cerca</div>
+  </ion-fab>
+
+  <ion-chip style="position:absolute;top:8.0em;z-index:20;left:28%;width:41%;background-color: black" slot="fixed" #chipLocation>
+    <ion-icon name="home" color="white"></ion-icon>
+    <ion-label>Bonola cesarina</ion-label>
+  </ion-chip>
+
+
+  <!-- spacer element -->
+  <div class="spacer" [style.height]="'11em'" #SPACER style="color:red"></div>
+
+  <div>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <!-- bottom fab -->
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" style="transform:translate3d(100px,0,0)" #bottomfab>
+    <ion-fab-button class="buttonTrasparent">
+      <ion-icon md="caret-up" ios="fish-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>

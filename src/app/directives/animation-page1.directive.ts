@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
@@ -5,144 +6,173 @@ import { AfterViewChecked, AfterViewInit, Directive, ElementRef, HostListener, I
 import { DomController } from '@ionic/angular';
 import { AnimationController, Gesture, GestureController } from '@ionic/angular';
 
+interface rgbResult {
+  r: number;
+  g: number;
+  b: number;
+}
+
 @Directive({
   selector: '[appAnimationPage1]'
 })
-export class AnimationPage1Directive implements AfterViewInit, AfterViewChecked{
+export class AnimationPage1Directive implements AfterViewInit {
 
-  @Input() imageRef: any;       //<-- top master image of category
   @Input() headerRef: any;      //<-- master top header
-  @Input() barSearchRef: any;   //<-- top appearing search bar
-  @Input() fabLeft1: any;        
-  @Input() fabRight1: any; 
-  @Input() fabRight2: any; 
-  @Input() tabBottom: any; 
-  @Input() barProductsCat: any; //<-- products sub category bar
-  @Input() vse: any;            //<-- vistual scroll viewport (cdk)
-  @Input() content: any;        //<-- master content reference
-  @Input() mover: any;          //<-- gripper to fast scroll
-  @Input() moverBadge: any;     //<-- gripper to fast scroll
+  @Input() headerRef2: any;     //<-- sub top header
 
+  @Input() fabLeft1: any;       //<-- FAB header
+  @Input() fabRight1: any;      //<-- FAB header
+  @Input() fabRight2: any;      //<-- FAB header
+  @Input() bottomFab: any;      //<-- FAB bottom (reveal)
+  @Input() chip: any;           //<-- location chip
+  @Input() content: any;        //<-- master content reference
   @Input() spacer: any;         //<-- initial space for scroll list
 
-  dragInMover: boolean = false;
-  imageHeight: number;
-  scrollDirection: string = '';
-  lastScrollOffset: 0;
-  startScrollPosition: 0;
-  moverStartDragPos: 0;
-  expandedHeader: boolean = false;
+
+  spacerHeight: number;
+  lastScrollOffset: number;
+  subHeaderStartTop: number;
+  prevIonTabBarHeight: number;
+  chipStartTop: number;
+  fabLeft1Rgb: rgbResult;
+  fabRight1Rgb: rgbResult;
+  fabRight2Rgb: rgbResult;
+  bottomFabVisible: boolean = false;
+  stopFooterMovement: boolean = false;   //<--- TODO
+
+  ionTabs: any;
 
   constructor(private element: ElementRef, private domCtrl: DomController, private animationCtrl: AnimationController
     , private gestureCtrl: GestureController, private renderer: Renderer2) {
-      //--> just injection
+    //--> just injection
   }
-  
+
   @HostListener('ionScroll', ['$event']) onContentScroll(ev: any) {
-    //--> not used with Virtual scroll list
+    this.animateOnScroll(ev.detail.currentY);
+
+    //--> show / hide bottom FAB
+    if (this.lastScrollOffset > 0) {
+
+      if (ev.detail.currentY > this.lastScrollOffset && ev.detail.currentY > 350 && this.bottomFabVisible === false && this.stopFooterMovement === false) {
+
+        const an1 = this.animationCtrl.create()
+          .addElement(this.ionTabs)
+          .duration(160)
+          .to('height', '0px').onFinish(() => {
+
+            //--> show FAB after bar disapperar
+            this.animationCtrl.create()
+              .addElement(this.bottomFab.el)
+              .duration(250)
+              .to('transform', 'translate3d(0,0,0)').play();
+          }).play();
+
+        this.bottomFabVisible = true;
+
+      } else if (ev.detail.currentY < this.lastScrollOffset && this.bottomFabVisible === true) {
+
+        const an1 = this.animationCtrl.create()
+          .addElement(this.ionTabs)
+          .duration(160)
+          .to('height', this.prevIonTabBarHeight + 'px').play();
+
+        //--> hide FAB immediately
+        this.animationCtrl.create()
+          .addElement(this.bottomFab.el)
+          .duration(1)
+          .to('transform', 'translate3d(100px,0,0)').play();
+
+        this.bottomFabVisible = false;
+
+      }
+    }
+
+    this.lastScrollOffset = ev.detail.currentY;
   }
-  
-  
+
   animateOnScroll(scrollTop) {
-    let imageMoveUp;
-    let imagescaleDown;
-    let imageOpacity;
-    let barOpacity;
-    let floatButtonMoveUp;
+
     let masterHeaderOpacity;
-    let bottomBarOpacity;
-    let spacerPosition;
-    let moveWidth;
-    let bagseMoverOpacity;
+    let fabButtonsFade;
+    let subHeaderPosition;
+    let masterHeaderOpacity2;
+    let chipPosition;
+    let fabButtonPosition;
+
+
+    if (this.spacerHeight === undefined) {
+      this.spacerHeight = this.spacer.offsetHeight;
+    }
+
+    if (this.subHeaderStartTop === undefined) {
+      this.subHeaderStartTop = this.headerRef2.el.getClientRects()[0].y;
+      const chipY = this.chip.el.getClientRects()[0].y;
+
+      const cs = getComputedStyle(this.chip.el);
+      this.chipStartTop = chipY + parseInt(cs.margin, 10);
+    }
+
+    if (this.prevIonTabBarHeight === undefined) {
+      const cs = getComputedStyle(this.ionTabs);
+      this.prevIonTabBarHeight = this.ionTabs.clientHeight - parseInt(cs.paddingBottom, 10);
+    }
 
     if (scrollTop >= 0) {
-      imageMoveUp = -this.easeLinear(scrollTop, 0, this.imageHeight / 3.5, 300);
-      imagescaleDown = this.easeLinear(scrollTop, 1, 0.7, 300);
-      imageOpacity = this.easeLinear(scrollTop, 100, 0, 200);
-      floatButtonMoveUp = this.easeLinear(scrollTop, 7.8, 5, 300);
-      barOpacity = this.easeLinear(scrollTop, 0, 100, 400, 300);
-      masterHeaderOpacity = this.easeLinear(scrollTop, 0, 100, 250, 180);
-      bottomBarOpacity = this.easeLinear(scrollTop, 0, 85, 400, 300);
 
-      moveWidth = this.easeLinear(scrollTop, 0, 7.5, 400, 300);
-      bagseMoverOpacity = this.easeLinear(scrollTop, 0, 100, 400, 300);
-      
+      //--> master category image
+      masterHeaderOpacity = this.easeLinear(scrollTop, 100, 0, 400, 0);
+      masterHeaderOpacity2 = this.easeLinear(scrollTop, 100, 0, 50, 0);
+      subHeaderPosition = this.easeLinear(scrollTop, this.subHeaderStartTop, 0, 300, 20);
+      chipPosition = this.easeLinear(scrollTop, 8, 2.5, 300, 20);
+      fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 80, 10);
+      fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 300, 20);
+
     } else {
-      imageMoveUp = this.easeLinear(-scrollTop, 0, this.imageHeight, 300);
-      imagescaleDown = this.easeLinear(-scrollTop, 1, 2.5, 300);
-      imageOpacity = 100;
-      barOpacity = 0;
-      moveWidth = 0;
-      bottomBarOpacity = 0;
-      bagseMoverOpacity = 0;
-      floatButtonMoveUp = this.easeLinear(-scrollTop, 7.8, 22.0, 300);
+
+      //--> only in iOS: drag down the scroll 
+      fabButtonsFade = 100;
+      masterHeaderOpacity = 0;
+      subHeaderPosition = 0;
+      chipPosition = this.chipStartTop;
+      subHeaderPosition = this.subHeaderStartTop;
     }
 
     //---> patch DOM
     this.domCtrl.write(() => {
-      this.renderer.setStyle(this.spacer, 'margin-bottom', spacerPosition + 'em');
 
-      this.renderer.setStyle(this.imageRef.el, 'transform', 'translate3d(0,' + imageMoveUp + 'px,0)  scale3d(' + imagescaleDown + ',' + imagescaleDown + ',1)');
-
-      this.renderer.setStyle(this.imageRef.el, 'opacity', imageOpacity + '%');
       this.renderer.setStyle(this.headerRef.el, 'opacity', masterHeaderOpacity + '%');
-      //this.renderer.setStyle(this.barRefBottom.el, 'opacity', bottomBarOpacity + '%');
+      this.renderer.setStyle(this.fabRight2.el, 'opacity', masterHeaderOpacity2 + '%');
 
-      this.renderer.setStyle(this.barSearchRef.el, 'opacity', barOpacity + '%');
-      
-      //this.renderer.setStyle(this.fabRef.el, 'top', floatButtonMoveUp + 'em');
-
-      this.renderer.setStyle(this.mover, 'width', moveWidth + '%');
-      this.renderer.setStyle(this.moverBadge.el, 'opacity', bagseMoverOpacity + '%');
-
-
-      if (this.scrollDirection === 'U' && this.startScrollPosition === 0) {
-
-        const an1 = this.animationCtrl.create()
-          .addElement(this.spacer)
-          .to('height', '10em')
-          .duration(200);
-
-          const an2 = this.animationCtrl.create()
-          .addElement(this.barSearchRef.el)
-          .to('opacity', '100%')
-          .duration(100);
-
-          const an3 = this.animationCtrl.create()
-          .addElement(this.imageRef.el)
-          .to('top', '4em')
-          .duration(100);
-
-        this.animationCtrl.create()
-          .addAnimation([an1, an2, an3]).play();
-
-        this.expandedHeader = true;
-      } else if (this.scrollDirection === 'D') {
-
-        const an4 = this.animationCtrl.create()
-          .addElement(this.spacer)
-          .duration(200)
-          .to('height', '7.5em');
-
-          const an5 = this.animationCtrl.create()
-          .addElement(this.imageRef.el)
-          .to('top', '2em')
-          .duration(100);
-
-          const an6 = this.animationCtrl.create()
-          .addElement(this.barSearchRef.el)
-          .to('opacity', '0%')
-          .duration(50);
-
-        this.animationCtrl.create()
-          .addAnimation([an4, an5, an6]).play();
-
-        this.expandedHeader = false;
-
-      }
+      this.renderer.setStyle(this.fabLeft1.el, 'top', fabButtonPosition + 'em');
+      this.renderer.setStyle(this.fabRight1.el, 'top', fabButtonPosition + 'em');
+      this.renderer.setStyle(this.headerRef2.el, 'top', subHeaderPosition + 'px');
+      this.renderer.setStyle(this.chip.el, 'top', chipPosition + 'em');
 
     });
 
+  }
+
+  ngAfterViewInit() {
+
+    //--> reference to master tabs
+    this.ionTabs = document.querySelector('ion-tab-bar');
+
+  }
+
+
+  //------------------------------------> Utilities functions
+
+  getRgbString(rgbObject: rgbResult, opacity: number): string {
+    return 'rgb(' + this.fabLeft1Rgb.r + ',' + this.fabLeft1Rgb.g + ',' + this.fabLeft1Rgb.b + ',' + opacity + ')';
+  }
+
+  hexToRgb(hex): rgbResult {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
   }
 
   easeLinear(actualTime, originalValue, targetValue, totalTime, initialCutoff = 0) {
@@ -161,109 +191,6 @@ export class AnimationPage1Directive implements AfterViewInit, AfterViewChecked{
 
     const c: number = targetValue - originalValue;
     return (c * internalActualTime / internalTotalTime + originalValue).toFixed(2);
-  }
-
-
-  ngAfterViewChecked() {
-
-    //--> get original heights
-    if (this.imageHeight === undefined || this.imageHeight === 0) {
-      this.imageHeight = this.imageRef.el.offsetHeight;
-    }
-
-  }
-
-  ngAfterViewInit() {
-
-    //--> drag (over scroll) event tracker
-    this.gestureCtrl.create({
-      el: this.content.el,
-      threshold: 15,
-      gestureName: 'my-gesture',
-      notCaptured: ev => {
-
-        if (ev.deltaY < 0) {
-          this.scrollDirection = 'D';
-        } else {
-          this.scrollDirection = 'U';
-        }
-
-        this.startScrollPosition = this.vse.measureScrollOffset();
-        console.log(this.startScrollPosition);
-      }
-    }, true).enable();
-
-    //---> mover list element drag (y)
-    this.gestureCtrl.create({
-      el: this.mover,
-      threshold: 15,
-      gestureName: 'mover',
-      onEnd: ev => {
-        this.dragInMover = false;
-        this.domCtrl.write(()=>{
-          this.renderer.setStyle( this.moverBadge.el, 'visibility','hidden');
-        });
-      },
-      onStart: ev => {
-        this.dragInMover = true;
-        this.domCtrl.read(() => {
-          this.moverStartDragPos = this.mover.getBoundingClientRect().y;
-        })
-
-        this.domCtrl.write(()=>{
-          this.renderer.setStyle( this.moverBadge.el, 'visibility','initial');
-        });
-      },
-      onMove: ev => {
-        let topPos = this.moverStartDragPos + ev.deltaY;
-        if (topPos < 200) {
-          topPos = 200;
-        }
-        if (topPos > 700) {
-          topPos = 700;
-        }
-
-        const elCount = this.vse.getDataLength();
-        const perc = (topPos - 200) / (700 - 200);
-        let elIdx = Math.ceil(elCount * perc);
-        if (elIdx < 6) {
-          elIdx = 6;
-        }
-
-        this.domCtrl.write(() => {
-          this.renderer.setStyle(this.mover, 'top', topPos + 'px');
-          this.vse.scrollToIndex(elIdx);
-        })
-      },
-      disableScroll: true,
-      direction: 'y',
-      gesturePriority: 100
-    }, true).enable();
-
-    this.vse.scrolledIndexChange.subscribe(function($event) {
-
-      this.domCtrl.write(() => {
-        this.moverBadge.el.innerHTML = 'in index '+$event;
-      });
-
-      if (this.dragInMover === false) {
-
-
-        const elCount = this.VSE.getDataLength();
-        const perc = $event / elCount
-        const topPos = Math.floor(200+((700 - 200) * perc));
-
-        this.domCtrl.write(() => {
-          this.renderer.setStyle(this.mover, 'top', topPos + 'px');
-        });
-      }
-    }.bind(this));
-
-    this.vse.elementScrolled()
-      .subscribe(function (event) {
-        this.animateOnScroll(this.VSE.measureScrollOffset());
-        this.lastScrollOffset = this.VSE.measureScrollOffset();
-      }.bind(this));
   }
 
 }
