@@ -122,10 +122,10 @@ export class AnimationPage1Directive implements AfterViewInit {
       //--> master category image
       masterHeaderOpacity = this.easeLinear(scrollTop, 100, 0, 400, 0);
       masterHeaderOpacity2 = this.easeLinear(scrollTop, 100, 0, 50, 0);
-      subHeaderPosition = this.easeLinear(scrollTop, this.subHeaderStartTop, 0, 300, 20);
-      chipPosition = this.easeLinear(scrollTop, 8, 2.5, 300, 20);
+      subHeaderPosition = this.easeLinear(scrollTop, this.subHeaderStartTop, 0, 250, 20);
+      chipPosition = this.easeLinear(scrollTop, 8, 2.5, 250, 20);
       fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 80, 10);
-      fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 300, 20);
+      fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 250, 20);
 
     } else {
 
