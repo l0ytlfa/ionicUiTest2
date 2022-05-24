@@ -34,7 +34,6 @@ export class AnimationPage1Directive implements AfterViewInit {
   lastScrollOffset: number;
   subHeaderStartTop: number;
   prevIonTabBarHeight: number;
-  chipStartTop: number;
   fabLeft1Rgb: rgbResult;
   fabRight1Rgb: rgbResult;
   fabRight2Rgb: rgbResult;
@@ -107,12 +106,9 @@ export class AnimationPage1Directive implements AfterViewInit {
       this.spacerHeight = this.spacer.offsetHeight;
     }
 
+  
     if (this.subHeaderStartTop === undefined) {
       this.subHeaderStartTop = this.headerRef2.el.getClientRects()[0].y;
-      const chipY = this.chip.el.getClientRects()[0].y;
-
-      const cs = getComputedStyle(this.chip.el);
-      this.chipStartTop = chipY + parseInt(cs.margin, 10);
     }
 
     if (this.prevIonTabBarHeight === undefined) {
@@ -138,12 +134,13 @@ export class AnimationPage1Directive implements AfterViewInit {
 
       //--> only in iOS: drag down the scroll 
       fabButtonsFade = 100;
-      masterHeaderOpacity = 0;
+      masterHeaderOpacity = 100;
       subHeaderPosition = 0;
       transalteHeaderImage = 0;
-      chipBackTrasparency = 0;
-      chipPosition = this.chipStartTop;
+      chipBackTrasparency = 1;
+      chipPosition = 8;
       subHeaderPosition = this.subHeaderStartTop;
+      
     }
 
     //---> patch DOM
@@ -157,8 +154,6 @@ export class AnimationPage1Directive implements AfterViewInit {
       this.renderer.setStyle(this.headerRef2.el, 'top', subHeaderPosition + 'px');
       this.renderer.setStyle(this.chip.el, 'top', chipPosition + 'em');
       this.renderer.setStyle(this.chip.el, 'background-color', 'rgb(0,0,0,'+chipBackTrasparency+')');
-
-      
 
       this.renderer.setStyle(this.imgHeader.el, 'transform', 'translate3d(-'+transalteHeaderImage + 'px,0,0)');
 
