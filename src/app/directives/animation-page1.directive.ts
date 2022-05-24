@@ -100,6 +100,7 @@ export class AnimationPage1Directive implements AfterViewInit {
     let chipPosition;
     let fabButtonPosition;
     let transalteHeaderImage;
+    let chipBackTrasparency;
 
 
     if (this.spacerHeight === undefined) {
@@ -119,6 +120,8 @@ export class AnimationPage1Directive implements AfterViewInit {
       this.prevIonTabBarHeight = this.ionTabs.clientHeight - parseInt(cs.paddingBottom, 10);
     }
 
+    
+
     if (scrollTop >= 0) {
 
       //--> master category image
@@ -128,7 +131,8 @@ export class AnimationPage1Directive implements AfterViewInit {
       chipPosition = this.easeLinear(scrollTop, 8, 2.5, 250, 20);
       fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 80, 10);
       fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 250, 20);
-      transalteHeaderImage = this.easeLinear(scrollTop,0,200,500)
+      transalteHeaderImage = this.easeLinear(scrollTop,0,200,500);
+      chipBackTrasparency = this.easeLinear(scrollTop,1,0.13,400,20);
 
     } else {
 
@@ -137,6 +141,7 @@ export class AnimationPage1Directive implements AfterViewInit {
       masterHeaderOpacity = 0;
       subHeaderPosition = 0;
       transalteHeaderImage = 0;
+      chipBackTrasparency = 0;
       chipPosition = this.chipStartTop;
       subHeaderPosition = this.subHeaderStartTop;
     }
@@ -151,6 +156,9 @@ export class AnimationPage1Directive implements AfterViewInit {
       this.renderer.setStyle(this.fabRight1.el, 'top', fabButtonPosition + 'em');
       this.renderer.setStyle(this.headerRef2.el, 'top', subHeaderPosition + 'px');
       this.renderer.setStyle(this.chip.el, 'top', chipPosition + 'em');
+      this.renderer.setStyle(this.chip.el, 'background-color', 'rgb(0,0,0,'+chipBackTrasparency+')');
+
+      
 
       this.renderer.setStyle(this.imgHeader.el, 'transform', 'translate3d(-'+transalteHeaderImage + 'px,0,0)');
 
