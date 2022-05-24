@@ -1,4 +1,4 @@
-<ion-content [scrollY]="true" appAnimationPage1 [scrollEvents]="true" [headerRef]="masterHeaderRef" [headerRef2]="masterHeaderRef2"
+<ion-content [scrollY]="true" appAnimationPage1 [scrollEvents]="true" [headerRef]="masterHeaderRef" [headerRef2]="masterHeaderRef2" [imgHeader]="imgHeader"
   [spacer]="SPACER" [content]="cnt" [fabLeft1]="fableft1" [fabRight1]="fabright1" [chip]="chipLocation"
   [fabRight2]="fabright2" [bottomFab]="bottomfab" [style.background]="'black'" #cnt>
 
@@ -7,7 +7,7 @@
     [style.background]="'rgba(94, 164, 253, 0.95)'" [style.opacity]="'100%'" [style.height]="'5.1em'"
     [style.align-items]="'center'" #masterHeaderRef>
     <ion-col size="8">
-      <ion-img src="../../assets/logo-sito-big-2.png" style="padding-top:1.8em;width:50%"></ion-img>
+      <ion-img src="../../assets/logo-sito-big-2.png" style="padding-top:1.8em;width:50%" #imgHeader></ion-img>
     </ion-col>
     <ion-col size="2">
     </ion-col>

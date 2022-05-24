@@ -27,6 +27,7 @@ export class AnimationPage1Directive implements AfterViewInit {
   @Input() chip: any;           //<-- location chip
   @Input() content: any;        //<-- master content reference
   @Input() spacer: any;         //<-- initial space for scroll list
+  @Input() imgHeader: any;      //<-- image in primary header
 
 
   spacerHeight: number;
@@ -98,6 +99,7 @@ export class AnimationPage1Directive implements AfterViewInit {
     let masterHeaderOpacity2;
     let chipPosition;
     let fabButtonPosition;
+    let transalteHeaderImage;
 
 
     if (this.spacerHeight === undefined) {
@@ -126,6 +128,7 @@ export class AnimationPage1Directive implements AfterViewInit {
       chipPosition = this.easeLinear(scrollTop, 8, 2.5, 250, 20);
       fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 80, 10);
       fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 250, 20);
+      transalteHeaderImage = this.easeLinear(scrollTop,0,200,500)
 
     } else {
 
@@ -133,6 +136,7 @@ export class AnimationPage1Directive implements AfterViewInit {
       fabButtonsFade = 100;
       masterHeaderOpacity = 0;
       subHeaderPosition = 0;
+      transalteHeaderImage = 0;
       chipPosition = this.chipStartTop;
       subHeaderPosition = this.subHeaderStartTop;
     }
@@ -147,6 +151,8 @@ export class AnimationPage1Directive implements AfterViewInit {
       this.renderer.setStyle(this.fabRight1.el, 'top', fabButtonPosition + 'em');
       this.renderer.setStyle(this.headerRef2.el, 'top', subHeaderPosition + 'px');
       this.renderer.setStyle(this.chip.el, 'top', chipPosition + 'em');
+
+      this.renderer.setStyle(this.imgHeader.el, 'transform', 'translate3d(-'+transalteHeaderImage + 'px,0,0)');
 
     });
 
