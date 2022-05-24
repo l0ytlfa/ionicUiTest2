@@ -121,7 +121,7 @@ export class AnimationPage1Directive implements AfterViewInit {
     if (scrollTop >= 0) {
 
       //--> master category image
-      masterHeaderOpacity = this.easeLinear(scrollTop, 100, 0, 400, 0);
+      masterHeaderOpacity = this.easeLinear(scrollTop, 100, 0, 250, 0);
       masterHeaderOpacity2 = this.easeLinear(scrollTop, 100, 0, 50, 0);
       subHeaderPosition = this.easeLinear(scrollTop, this.subHeaderStartTop, 0, 250, 20);
       chipPosition = this.easeLinear(scrollTop, 8, 2.5, 250, 20);
