@@ -95,19 +95,19 @@ export class AnimationPage2Directive implements AfterViewInit {
       if (color === undefined) {
         color = 'primary';
       }
-      this.fabLeft1Rgb = this.hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--ion-color-' + color));
+      this.fabLeft1Rgb = this.hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--ion-color-' + color).trim());
 
       color = this.fabRight1.color;
       if (color === undefined) {
         color = 'primary';
       }
-      this.fabRight1Rgb = this.hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--ion-color-' + color));
+      this.fabRight1Rgb = this.hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--ion-color-' + color).trim());
 
       color = this.fabRight2.color;
       if (color === undefined) {
         color = 'primary';
       }
-      this.fabRight2Rgb = this.hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--ion-color-' + color));
+      this.fabRight2Rgb = this.hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--ion-color-' + color).trim());
     }
 
 

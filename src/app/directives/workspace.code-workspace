@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../../ionicappcorner"
+		},
+		{
+			"path": "../../../../../nodeprojects/packager"
+		},
+		{
+			"path": "../../../../../nodeprojects/invoicemmarchiver"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {}
+}

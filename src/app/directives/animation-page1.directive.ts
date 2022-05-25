@@ -93,6 +93,7 @@ export class AnimationPage1Directive implements AfterViewInit {
   animateOnScroll(scrollTop) {
 
     let masterHeaderOpacity;
+    let masterHeader3d;
     let fabButtonsFade;
     let subHeaderPosition;
     let masterHeaderOpacity2;
@@ -100,13 +101,13 @@ export class AnimationPage1Directive implements AfterViewInit {
     let fabButtonPosition;
     let transalteHeaderImage;
     let chipBackTrasparency;
+    let masterHeaderTopRadius;
 
 
     if (this.spacerHeight === undefined) {
       this.spacerHeight = this.spacer.offsetHeight;
     }
 
-  
     if (this.subHeaderStartTop === undefined) {
       this.subHeaderStartTop = this.headerRef2.el.getClientRects()[0].y;
     }
@@ -116,7 +117,7 @@ export class AnimationPage1Directive implements AfterViewInit {
       this.prevIonTabBarHeight = this.ionTabs.clientHeight - parseInt(cs.paddingBottom, 10);
     }
 
-    
+
 
     if (scrollTop >= 0) {
 
@@ -127,35 +128,93 @@ export class AnimationPage1Directive implements AfterViewInit {
       chipPosition = this.easeLinear(scrollTop, 8, 2.5, 250, 20);
       fabButtonsFade = this.easeLinear(scrollTop, 1, 0, 80, 10);
       fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 250, 20);
-      transalteHeaderImage = this.easeLinear(scrollTop,0,200,500);
-      chipBackTrasparency = this.easeLinear(scrollTop,1,0.13,400,20);
+      transalteHeaderImage = this.easeLinear(scrollTop, 0, 200, 500, 60);
+      chipBackTrasparency = this.easeLinear(scrollTop, 1, 0.13, 400, 20);
+      masterHeader3d = this.easeLinear(scrollTop, 1, 0.9, 70, 20);
+      masterHeaderTopRadius = this.easeLinear(scrollTop, 0, 2, 10);
 
     } else {
 
       //--> only in iOS: drag down the scroll 
       fabButtonsFade = 100;
       masterHeaderOpacity = 100;
-      subHeaderPosition = 0;
+      masterHeaderOpacity2 = 100;
+      subHeaderPosition = this.easeLinear(-scrollTop, this.subHeaderStartTop, this.subHeaderStartTop + 80, 250, 20);
+      fabButtonPosition = this.easeLinear(-scrollTop, 6, 10, 250, 20);
+      chipPosition = this.easeLinear(-scrollTop, 8, 13, 250, 20);
       transalteHeaderImage = 0;
       chipBackTrasparency = 1;
-      chipPosition = 8;
-      subHeaderPosition = this.subHeaderStartTop;
-      
+      masterHeader3d = 1;
+      masterHeaderTopRadius = 0;
+
     }
 
     //---> patch DOM
     this.domCtrl.write(() => {
 
-      this.renderer.setStyle(this.headerRef.el, 'opacity', masterHeaderOpacity + '%');
-      this.renderer.setStyle(this.fabRight2.el, 'opacity', masterHeaderOpacity2 + '%');
+      //style="border-top-left-radius:0.6em;border-top-right-radius:0.6em"
+      if (scrollTop > 0){
+        this.renderer.addClass(this.headerRef.el,'roundTop');
+      }else{
+        this.renderer.removeClass(this.headerRef.el,'roundTop');
+      }
+      //this.renderer.setStyle(this.headerRef.el, 'border-top-left-radius', '1.6em)');
 
-      this.renderer.setStyle(this.fabLeft1.el, 'top', fabButtonPosition + 'em');
-      this.renderer.setStyle(this.fabRight1.el, 'top', fabButtonPosition + 'em');
-      this.renderer.setStyle(this.headerRef2.el, 'top', subHeaderPosition + 'px');
-      this.renderer.setStyle(this.chip.el, 'top', chipPosition + 'em');
-      this.renderer.setStyle(this.chip.el, 'background-color', 'rgb(0,0,0,'+chipBackTrasparency+')');
+      this.renderer.setStyle(this.chip.el, 'background-color', 'rgb(0,0,0,' + chipBackTrasparency + ')');
 
-      this.renderer.setStyle(this.imgHeader.el, 'transform', 'translate3d(-'+transalteHeaderImage + 'px,0,0)');
+      const an1 = this.animationCtrl.create()
+        .addElement(this.headerRef.el)
+        .to('opacity', masterHeaderOpacity + '%')
+        .duration(100);
+
+      const an2 = this.animationCtrl.create()
+        .addElement(this.fabRight2.el)
+        .to('opacity', masterHeaderOpacity2 + '%')
+        .duration(10);
+
+      const an3 = this.animationCtrl.create()
+        .addElement(this.fabLeft1.el)
+        .to('top', fabButtonPosition + 'em')
+        .duration(100);
+
+      const an4 = this.animationCtrl.create()
+        .addElement(this.fabRight1.el)
+        .to('top', fabButtonPosition + 'em')
+        .duration(100);
+
+      const an5 = this.animationCtrl.create()
+        .addElement(this.headerRef2.el)
+        .to('top', subHeaderPosition + 'px')
+        .duration(100);
+
+      const an6 = this.animationCtrl.create()
+        .addElement(this.chip.el)
+        .to('top', chipPosition + 'em')
+        .duration(100);
+
+      this.animationCtrl.create()
+        .addAnimation([an1, an2, an3, an4, an5, an6]).play();
+
+
+
+
+      const blk2_1 = this.animationCtrl.create()
+        .addElement(this.headerRef.el)
+        .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1)')
+        .duration(100);
+
+      const blk2_2 = this.animationCtrl.create()
+        .addElement(this.fabRight2.el)
+        .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1)')
+        .duration(100);
+
+      const blk2_3 = this.animationCtrl.create()
+        .addElement(this.imgHeader.el)
+        .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1)')
+        .duration(100);
+
+      this.animationCtrl.create()
+        .addAnimation([blk2_1, blk2_2, blk2_3]).play();
 
     });
 
