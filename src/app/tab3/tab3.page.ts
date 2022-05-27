@@ -21,6 +21,7 @@ export class Tab3Page {
       renderBullet: (index, className)=> '<span class="' + className + '" style="background:white;"></span>'
     };
 
+    //--> slide over effect
     this.effectSlider = {
       prev: {
         shadow: true,
