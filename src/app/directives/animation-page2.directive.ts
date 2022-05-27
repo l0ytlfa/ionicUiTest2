@@ -337,7 +337,7 @@ export class AnimationPage2Directive implements AfterViewInit {
 
 
     //--> list index change: trace end of the list show + update mover notch text
-    this.vse.scrolledIndexChange.subscribe(function ($event) {
+    this.vse.scrolledIndexChange.subscribe(function($event) {
 
       this.domCtrl.write(() => {
         this.moverBadge.el.innerHTML = 'in index ' + $event;
@@ -362,7 +362,7 @@ export class AnimationPage2Directive implements AfterViewInit {
 
 
     //this.vse.elementScrolled()
-    this.vse.scrollDispatcher.scrolled(1).subscribe(function (event) {
+    this.vse.scrollDispatcher.scrolled(1).subscribe(function(event) {
 
       this.animateOnScroll(this.vse.measureScrollOffset());
 

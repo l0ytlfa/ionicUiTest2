@@ -2,9 +2,10 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
-import { AfterViewChecked, AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+
+import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 import { DomController } from '@ionic/angular';
-import { AnimationController, Gesture, GestureController } from '@ionic/angular';
+import { AnimationController, GestureController } from '@ionic/angular';
 
 interface rgbResult {
   r: number;
@@ -15,11 +16,11 @@ interface rgbResult {
 @Directive({
   selector: '[appAnimationPage1]'
 })
+
 export class AnimationPage1Directive implements AfterViewInit {
 
   @Input() headerRef: any;      //<-- master top header
   @Input() headerRef2: any;     //<-- sub top header
-
   @Input() fabLeft1: any;       //<-- FAB header
   @Input() fabRight1: any;      //<-- FAB header
   @Input() fabRight2: any;      //<-- FAB header
@@ -39,6 +40,8 @@ export class AnimationPage1Directive implements AfterViewInit {
   fabRight2Rgb: rgbResult;
   bottomFabVisible: boolean = false;
   stopFooterMovement: boolean = false;   //<--- TODO
+  scrollElement: any;
+  endOfPage: boolean = false;
 
   ionTabs: any;
 
@@ -47,13 +50,27 @@ export class AnimationPage1Directive implements AfterViewInit {
     //--> just injection
   }
 
-  @HostListener('ionScroll', ['$event']) onContentScroll(ev: any) {
+  @HostListener('ionScroll', ['$event']) async onContentScroll(ev: any) {
+
+    if (this.scrollElement === undefined){
+      this.scrollElement = await ev.target.getScrollElement();  
+    }
+
+    //--> check if end of the scroll 
+    const scrollHeight = this.scrollElement.scrollHeight - this.scrollElement.clientHeight;
+    if(this.scrollElement.scrollTop >= scrollHeight) {
+      this.endOfPage = true;
+    }else{
+      this.endOfPage = false;
+    }
+    
+
     this.animateOnScroll(ev.detail.currentY);
 
     //--> show / hide bottom FAB
     if (this.lastScrollOffset > 0) {
 
-      if (ev.detail.currentY > this.lastScrollOffset && ev.detail.currentY > 350 && this.bottomFabVisible === false && this.stopFooterMovement === false) {
+      if (ev.detail.currentY > this.lastScrollOffset && ev.detail.currentY > 350 && this.bottomFabVisible === false && this.stopFooterMovement === false && this.endOfPage === false) {
 
         const an1 = this.animationCtrl.create()
           .addElement(this.ionTabs)
@@ -130,7 +147,7 @@ export class AnimationPage1Directive implements AfterViewInit {
       fabButtonPosition = this.easeLinear(scrollTop, 6, 1.3, 250, 20);
       transalteHeaderImage = this.easeLinear(scrollTop, 0, 200, 500, 60);
       chipBackTrasparency = this.easeLinear(scrollTop, 1, 0.13, 400, 20);
-      masterHeader3d = this.easeLinear(scrollTop, 1, 0.9, 70, 20);
+      masterHeader3d = this.easeLinear(scrollTop, 1, 0.9, 70, 40);
       masterHeaderTopRadius = this.easeLinear(scrollTop, 0, 2, 10);
 
     } else {
@@ -149,16 +166,15 @@ export class AnimationPage1Directive implements AfterViewInit {
 
     }
 
+
     //---> patch DOM
     this.domCtrl.write(() => {
 
-      //style="border-top-left-radius:0.6em;border-top-right-radius:0.6em"
       if (scrollTop > 0){
         this.renderer.addClass(this.headerRef.el,'roundTop');
       }else{
         this.renderer.removeClass(this.headerRef.el,'roundTop');
       }
-      //this.renderer.setStyle(this.headerRef.el, 'border-top-left-radius', '1.6em)');
 
       this.renderer.setStyle(this.chip.el, 'background-color', 'rgb(0,0,0,' + chipBackTrasparency + ')');
 
@@ -192,9 +208,7 @@ export class AnimationPage1Directive implements AfterViewInit {
         .to('top', chipPosition + 'em')
         .duration(100);
 
-      this.animationCtrl.create()
-        .addAnimation([an1, an2, an3, an4, an5, an6]).play();
-
+      this.animationCtrl.create().addAnimation([an1, an2, an3, an4, an5, an6]).play();
 
 
 
@@ -213,18 +227,15 @@ export class AnimationPage1Directive implements AfterViewInit {
         .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1)')
         .duration(100);
 
-      this.animationCtrl.create()
-        .addAnimation([blk2_1, blk2_2, blk2_3]).play();
+      this.animationCtrl.create().addAnimation([blk2_1, blk2_2, blk2_3]).play();
 
     });
 
   }
 
   ngAfterViewInit() {
-
     //--> reference to master tabs
     this.ionTabs = document.querySelector('ion-tab-bar');
-
   }
 
 
