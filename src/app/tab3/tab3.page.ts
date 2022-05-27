@@ -11,8 +11,14 @@ SwiperCore.use([Pagination]);
 export class Tab3Page {
 
   slideOpts: any;
+  pagination: object;
 
   constructor() {
+
+    this.pagination = {
+      clickable: true,
+      renderBullet: (index, className)=> '<span class="' + className + '" style="background:white;"></span>'
+    };
 
   }
 

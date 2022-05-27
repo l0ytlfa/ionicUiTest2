@@ -189,8 +189,6 @@ export class AnimationPage3Directive implements AfterViewInit {
       this.renderer.setStyle(this.fabLeft1.el, `--background`, this.getRgbString(this.fabLeft1Rgb, fabButtonsFade), 2);
       this.renderer.setStyle(this.fabRight1.el, `top`, fabButtonMove+'em');
       this.renderer.setStyle(this.fabRight2.el, `top`, fabButtonMove+'em');
-      //this.renderer.setStyle(this.fabRight3.el, `top`, fabButtonMove2+'em');
-
 
       this.renderer.setStyle(this.swiperRef, 'opacity', imageOpacity + '%');
       this.renderer.setStyle(this.fabRight3.el, 'opacity', imageOpacity + '%');
