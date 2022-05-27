@@ -1,17 +1,147 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [scrollY]="true" appAnimationPage3 [scrollEvents]="true" [headerRef]="masterHeaderRef"
+  [headerTextRef]="masterHeaderText" [swiperRef]="swiperRef" [spacer]="SPACER" [content]="cnt" [fabLeft1]="fableft1"
+  [fabRight1]="fabright1" [fabRight2]="fabright2" [fabRight3]="fabright3" [bottomFab]="bottomfab"
+  [style.background]="'black'" #cnt>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- master header  -->
+  <ion-row [style.z-index]="'10'" [style.position]="'fixed'" [style.width]="'100%'"
+    [style.background]="'rgba(94, 164, 253, 0.90)'" [style.opacity]="'0%'" [style.height]="'5.1em'"
+    [style.justify-content]="'center'" [style.align-items]="'center'" #masterHeaderRef>
+    <ion-col size="2">
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    </ion-col>
+    <ion-col size="8">
+      <h5 [style.margin]="'0'" [style.padding-top]="'1.5em'" [style.padding-left]="'1.5em'" #masterHeaderText>sushi
+        pasticceria!</h5>
+    </ion-col>
+    <ion-col size="2">
+    </ion-col>
+  </ion-row>
+
+  <!-- fabs header https://ionic.io/ionicons -->
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
+    [style.left]="'-1em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'">
+    <ion-fab-button size="small" #fableft1 style="--box-shadow:0">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <!-- fabs locked -->
+  <ion-fab horizontal="end" vertical="top" edge  [style.z-index]="'20'" [style.right]="'9em'"
+    [style.top]="'17em'" style="position: absolute;" #fabright3>
+    <ion-fab-button size="small" style="--box-shadow:0">
+      <ion-icon name="information"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="top" edge [style.position]="'fixed'" [style.z-index]="'20'" [style.right]="'1em'"
+    [style.top]="'17em'" style="position: absolute;" #fabright1>
+    <ion-fab-button size="small" style="--box-shadow:0">
+      <ion-icon name="heart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="top" edge [style.position]="'fixed'" [style.z-index]="'20'"
+    [style.right]="'4.5em'" [style.top]="'17em'" style="position: absolute;" #fabright2>
+    <ion-fab-button size="small" style="--box-shadow:0">
+      <ion-icon name="share-social"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+  <!-- header image-->
+  <div [style.z-index]="'0'" [style.position]="'fixed'" [style.width]="'100%'" [style.height]="'22em'" #swiperRef>
+    <swiper [pagination]="true" [spaceBetween]="30">
+      <ng-template swiperSlide>
+        <ion-img src="../../assets/category_hdr_sushi.JPG"></ion-img>
+        <h1 style="position: absolute;bottom:16%;left:5%" #imageText>sushi pasticceria!</h1>
+        <div style="position: absolute;bottom:12%;left:5%;color:#c6c6c6">
+          and friends smart sushi
+        </div>
+        <ion-badge color="dark" style="position: absolute;right:4%;bottom:22%">99 €</ion-badge>
+      </ng-template>
+      <ng-template swiperSlide>
+        <ion-img src="../../assets/category_hdr_sushi.JPG"></ion-img>
+      </ng-template>
+      <ng-template swiperSlide>Slide 3</ng-template>
+    </swiper>
+  </div>
+
+
+
+  <div class="spacer" [style.height]="'18em'" #SPACER [style.margin-bottom]="'0em'"></div>
+
+  <div>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="../../assets/madison.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+        Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="spacer" [style.height]="'5em'" #SPACER [style.margin-bottom]="'0em'"></div>
+
+
+  <!-- bottom fab -->
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" style="transform:translate3d(100px,0,0)" #bottomfab>
+    <ion-fab-button class="buttonTrasparent">
+      <ion-icon md="caret-up" ios="fish-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>

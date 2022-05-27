@@ -35,3 +35,7 @@
 	border-radius: 2em;
 	background: #86c6ff4d;
 }
+
+@import '~swiper/scss';
+@import '~@ionic/angular/css/ionic-swiper';
+@import '~swiper/scss/pagination';

@@ -172,16 +172,19 @@ export class AnimationPage2Directive implements AfterViewInit {
         const an1 = this.animationCtrl.create()
           .addElement(this.spacer)
           .to('height', spacerH + 'px')
+          .easing('ease-in-out')
           .duration(100);
 
         const an2 = this.animationCtrl.create()
           .addElement(this.barSearchRef.el)
           .to('opacity', '100%')
+          .easing('ease-in-out')
           .duration(150);
 
         const an3 = this.animationCtrl.create()
           .addElement(this.imageRef)
           .to('top', this.searchBarHeight + 'px')
+          .easing('ease-in-out')
           .duration(100);
 
         const deltaTot = this.searchBarHeight / 1.8 + this.masterTopOffset;
@@ -189,22 +192,26 @@ export class AnimationPage2Directive implements AfterViewInit {
         const an4 = this.animationCtrl.create()
           .addElement(this.fabLeft1.el.parentElement)
           .to('top', deltaTot + 'px')
+          .easing('ease-in-out')
           .duration(100);
 
         const an5 = this.animationCtrl.create()
           .addElement(this.fabRight1.el.parentElement)
           .to('top', deltaTot + 'px')
+          .easing('ease-in-out')
           .duration(100);
 
         const an6 = this.animationCtrl.create()
           .addElement(this.fabRight2.el.parentElement)
           .to('top', deltaTot + 'px')
+          .easing('ease-in-out')
           .duration(100);
 
         this.animationCtrl.create()
           .addAnimation([an1, an2, an3, an4, an5, an6]).play();
 
         this.expandedHeader = true;
+
       } else if (this.scrollDirection === 'D') {
 
         const an4 = this.animationCtrl.create()

@@ -1,0 +1,21 @@
+
+//----> custom variables
+div{
+    --offset-top: 2em;
+  }
+  
+  ion-fab{
+    --offset-top-button: 1.6em;
+  }
+  
+  .buttonTrasparent{
+    --background: #2a88a554 !important;
+  }
+  
+
+  .buttonsLock {
+    z-index: 20;
+    right: 9em;
+    top: 17em; 
+    position: absolute;
+  }

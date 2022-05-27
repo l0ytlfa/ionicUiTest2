@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import SwiperCore, { Pagination } from 'swiper';
+
+SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +10,10 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  slideOpts: any;
+
+  constructor() {
+
+  }
 
 }
