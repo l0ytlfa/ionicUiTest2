@@ -53,7 +53,7 @@
 
   <!-- header image-->
   <div [style.z-index]="'0'" [style.position]="'fixed'" [style.width]="'100%'" [style.height]="'22em'" #swiperRef>
-    <swiper [pagination]="pagination" [spaceBetween]="30">
+    <swiper [pagination]="pagination" [spaceBetween]="30" [creativeEffect]="effectSlider" [effect]="'creative'" [grabCursor]="true">
       <ng-template swiperSlide>
         <ion-img src="../../assets/category_hdr_sushi.JPG"></ion-img>
         <h1 style="position: absolute;bottom:16%;left:5%" #imageText>sushi pasticceria!</h1>
@@ -63,10 +63,10 @@
         <ion-badge color="dark" style="position: absolute;right:4%;bottom:22%">99 €</ion-badge>
       </ng-template>
       <ng-template swiperSlide>
-        <ion-img src="../../assets/category_hdr_sushi.JPG"></ion-img>
+        <ion-img src="../../assets/sushi__34_.jpeg"></ion-img>
       </ng-template>
       <ng-template swiperSlide>
-        <ion-img src="../../assets/category_hdr_sushi.JPG"></ion-img>
+        <ion-img src="../../assets/sushi__1_.jpeg"></ion-img>
       </ng-template>
     </swiper>
   </div>

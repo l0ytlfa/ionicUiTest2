@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import SwiperCore, { Pagination } from 'swiper';
+import SwiperCore, { Pagination , EffectCreative } from 'swiper';
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination, EffectCreative]);
 
 @Component({
   selector: 'app-tab3',
@@ -12,6 +12,7 @@ export class Tab3Page {
 
   slideOpts: any;
   pagination: object;
+  effectSlider: object;
 
   constructor() {
 
@@ -19,6 +20,26 @@ export class Tab3Page {
       clickable: true,
       renderBullet: (index, className)=> '<span class="' + className + '" style="background:white;"></span>'
     };
+
+    this.effectSlider = {
+      prev: {
+        shadow: true,
+        translate: ['-20%', 0, -1]
+      },
+      next: {
+        translate: ['100%', 0, 0]
+      }
+    };
+
+    /*this.effectSlider = {
+      prev: {
+        shadow: true,
+        translate: [0, 0, -400]
+      },
+      next: {
+        translate: ['100%', 0, 0]
+      }
+    };*/
 
   }
 
