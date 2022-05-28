@@ -39,3 +39,19 @@
 @import '~swiper/scss';
 @import '~@ionic/angular/css/ionic-swiper';
 @import '~swiper/scss/pagination';
+
+.cartButtonAction{
+    color: white !important;
+  }
+
+.cartButtonAction>span{
+	justify-content: flex-start !important;
+}
+
+.cartButtonAction ion-icon{
+	color: var(--ion-color-primary) !important;
+}
+
+.closeButtonAction{
+    color: red !important;
+  }
