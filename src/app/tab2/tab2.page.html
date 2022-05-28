@@ -128,7 +128,7 @@
           [ngClass]="{'img-loaded':!lclimg.loaded,'img-fadeIn':lclimg.loaded}"
           class="roundimg" #lclimg></ion-img>
 
-          <ion-spinner *ngIf="!lclimg.loaded" style="width: 30%;"></ion-spinner> 
+          <div class="profilePic animate" *ngIf="!lclimg.loaded"></div>
 
           <ion-label>
             <h2 [style.color]="'white'">{{item.r1}}</h2>

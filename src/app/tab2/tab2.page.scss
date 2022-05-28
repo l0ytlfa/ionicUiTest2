@@ -32,3 +32,28 @@ ion-fab{
 .roundimg::part(image) {
   border-radius: 10px;
 }
+
+ //----> shimmer effect
+ 
+
+ .profilePic {
+  height: 75%;
+  width: 25%;
+  border-radius: 0.5em;
+  margin-right: 1em;
+}
+
+.animate {
+   animation : shimmer 2s infinite linear;
+   background: linear-gradient(to right, #eff1f3 4%, #b3b0b0 25%, #eff1f3 36%);
+    background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
