@@ -16,3 +16,19 @@ ion-fab{
   --background: #2a88a554 !important;
 }
 
+
+//---> image lazy loading
+
+.img-loaded{
+ visibility: collapse;
+ opacity: 0;
+}
+
+.img-fadeIn{
+  opacity: 1;
+  transition: opacity 1.0s;
+}
+
+.roundimg::part(image) {
+  border-radius: 10px;
+}
