@@ -12,6 +12,7 @@ export class DetailpopupPage implements OnInit, AfterViewInit {
 
   @ViewChild('header') headerImage: ElementRef;
   @ViewChild('addtocart') addtocart: any;
+  @ViewChild('headerbar') headerbar: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -55,10 +56,19 @@ export class DetailpopupPage implements OnInit, AfterViewInit {
 
       this.animationCtrl.create().addAnimation([an1, an2, an3]).play().then(() => {
         this.renderer.setStyle(this.headerImage.nativeElement, 'border-radius', '0em');
+
         const an4 = this.animationCtrl.create()
         .addElement(this.addtocart.nativeElement)
         .fromTo('opacity', 0, 100).delay(100)
-        .duration(200).play();
+        .duration(200);
+
+        const an5 = this.animationCtrl.create()
+        .addElement(this.headerbar.el)
+        .fromTo('opacity', 0, 100).delay(100)
+        .duration(200);
+
+        this.animationCtrl.create().addAnimation([an4,an5]).play();
+
       });
     }, 50);
 
