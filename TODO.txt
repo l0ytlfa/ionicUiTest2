@@ -1,0 +1,26 @@
+----------------------------------------------
+FRONTEND UX/UI 
+
+tested:
+- popup appear "spread" over window https://www.youtube.com/watch?app=desktop&v=s8ssGa-Rf6o
+- popup reveal center with bounce effect (animation classes for modals) https://www.joshmorony.com/create-a-custom-modal-page-transition-animation-in-ionic/
+- vdeo inline play automatico allo scroll della view https://www.youtube.com/watch?v=qQYuVfAJ4zY
+- youtube player with API and wrapper https://github.com/angular/components/blob/main/src/youtube-player/youtube-player.ts 
+- custom SVG icon (edited in https://editor.method.ac/)
+- animated GIF as ion-img
+- skeleton CSS lib  (https://dgknca.github.io/css-skeletons/)
+- animated gif in card
+- swiperjs effects
+
+missing to test:
+
+- list press image > effect grow image + details appear down (shared component) https://www.joshmorony.com/creating-a-shared-element-transition-animation-in-ionic/
+- list > reveal expand detail animation
+- preparation time badge graphics (Deliveroo)
+- video youtube enbedd in tab
+- order flow graphic (Deporvillage)
+- splash screen with animation
+- card cirle layout (Linkedin contacts)
+- side panel menu (slack)
+- popup lower traslucent with bounce effect (Spotify)
+- long press shrink and bounce effect (for dialog appear)

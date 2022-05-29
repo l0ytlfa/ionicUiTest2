@@ -83,8 +83,7 @@
   <div class="spacer" [style.height]="'18em'" #SPACER [style.margin-bottom]="'0em'"></div>
 
   <div>
-    <ion-card>
-      
+    <ion-card>      
       <img src="../../assets/madison.jpg" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="!loaded" />
       <ion-spinner *ngIf="!loaded"></ion-spinner>
       
@@ -97,6 +96,62 @@
         Wisconsin Territory in 1836.
       </ion-card-content>
     </ion-card>
+
+    <ion-list inset="true">
+      <ion-list-header>Info & Nutrition</ion-list-header>
+      <ion-accordion-group>
+        <ion-accordion value="colors" toggle-icon="fish-outline" class="accordionIcon"> <!-- class MUST be global.sccc for view encapsulation -->
+          <ion-item slot="header">
+            <ion-label>descrizione</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+            <ion-item>
+              <ion-text class="accordionText">
+                qui tutte le info sul mio prodotto
+                anche multi linea
+              </ion-text>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+        <ion-accordion value="shapes" toggle-icon="receipt-outline" class="accordionIcon">
+          <ion-item slot="header">
+            <ion-label>ingredienti</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+            <ion-item>
+              <ion-label class="accordionIngredients">riso basmati</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label class="accordionIngredients">salsa soia</ion-label>
+              <ion-icon name="leaf-outline" style="font-size: 1em;color:white"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label class="accordionIngredients">alga</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+        <ion-accordion value="numbers" toggle-icon="nutrition-outline" class="accordionIcon">
+          <ion-item slot="header">
+            <ion-label>nutrizione</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+            <ion-item>
+              <ion-label>1</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>2</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>3</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-list>
+
     <ion-card>
       <img src="../../assets/madison.jpg" />
       <ion-card-header>

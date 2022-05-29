@@ -121,7 +121,7 @@
         </span>
         </ion-list-header> 
 
-        <ion-item [style.height]="'80px'" *ngIf="i!==10">
+        <ion-item [style.height]="'80px'" *ngIf="i!==10" (click)="onListItemClick($event)">
 
           <!-- must store at loaded image on template ref (local of every ngFor item!) a loaded attribute to put condition over loader-->
           <ion-img src="https://images6.alphacoders.com/941/941929.jpg" style="width: 30%;padding-right: 1em;border-radius:2em" (ionImgWillLoad)="lclimg.loaded = false" (ionImgDidLoad)="lclimg.loaded = true" 

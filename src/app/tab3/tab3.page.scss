@@ -37,4 +37,16 @@ div{
   }
 
 
- 
+
+  .accordionText {
+    font-size: 0.9em;
+    color: var(--ion-color-primary);
+  }
+
+
+
+  .accordionIngredients {
+	/* text-align: end; */
+	padding-left: 1em;
+	color: var(--ion-color-tertiary);
+}
