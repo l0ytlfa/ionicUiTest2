@@ -57,7 +57,7 @@ export class DetailpopupPage implements OnInit, AfterViewInit {
         this.renderer.setStyle(this.headerImage.nativeElement, 'border-radius', '0em');
         const an4 = this.animationCtrl.create()
         .addElement(this.addtocart.nativeElement)
-        .fromTo('opacity', 0, 100).delay(200)
+        .fromTo('opacity', 0, 100).delay(100)
         .duration(200).play();
       });
     }, 50);
