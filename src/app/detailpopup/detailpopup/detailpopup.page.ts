@@ -11,6 +11,7 @@ import { AnimationController, GestureController } from '@ionic/angular';
 export class DetailpopupPage implements OnInit, AfterViewInit {
 
   @ViewChild('header') headerImage: ElementRef;
+  @ViewChild('addtocart') addtocart: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -52,8 +53,12 @@ export class DetailpopupPage implements OnInit, AfterViewInit {
         .to('transform', 'translate3d(0, 0, 0) scale3d(1, 1, 1)')
         .duration(timing);
 
-      this.animationCtrl.create().addAnimation([an1, an2, an3]).play().then(()=>{
+      this.animationCtrl.create().addAnimation([an1, an2, an3]).play().then(() => {
         this.renderer.setStyle(this.headerImage.nativeElement, 'border-radius', '0em');
+        const an4 = this.animationCtrl.create()
+        .addElement(this.addtocart.nativeElement)
+        .fromTo('opacity', 0, 100).delay(200)
+        .duration(200).play();
       });
     }, 50);
 
