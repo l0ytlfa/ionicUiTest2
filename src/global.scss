@@ -40,22 +40,48 @@
 @import '~@ionic/angular/css/ionic-swiper';
 @import '~swiper/scss/pagination';
 
-.cartButtonAction{
-    color: white !important;
-  }
+.cartButtonAction {
+	color: white !important;
+}
 
-.cartButtonAction>span{
+.cartButtonAction>span {
 	justify-content: flex-start !important;
 }
 
-.cartButtonAction ion-icon{
+.cartButtonAction ion-icon {
 	color: var(--ion-color-primary) !important;
 }
 
-.closeButtonAction{
-    color: red !important;
-  }
+.closeButtonAction {
+	color: red !important;
+}
 
-  .accordionIcon ion-icon {
-    color: var(--ion-color-secondary);
-  }
+.accordionIcon ion-icon {
+	color: var(--ion-color-secondary);
+}
+
+
+
+ion-tab-bar {
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+@keyframes bouncein {
+	from {
+		scale: 1
+	}
+
+	50% {
+		scale: 0.85
+	}
+
+	to {
+		scale: 1
+	}
+}
+
+ion-tab-button:focus {
+	animation-duration: 0.3s;
+	animation-name: bouncein;
+	animation-timing-function: ease-in-out;
+}
