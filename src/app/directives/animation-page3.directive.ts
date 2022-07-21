@@ -53,18 +53,18 @@ export class AnimationPage3Directive implements AfterViewInit {
 
   @HostListener('ionScroll', ['$event']) async onContentScroll(ev: any) {
 
-    if (this.scrollElement === undefined){
-      this.scrollElement = await ev.target.getScrollElement();  
+    if (this.scrollElement === undefined) {
+      this.scrollElement = await ev.target.getScrollElement();
     }
 
     //--> check if end of the scroll 
     const scrollHeight = this.scrollElement.scrollHeight - this.scrollElement.clientHeight;
-    if(this.scrollElement.scrollTop >= scrollHeight) {
+    if (this.scrollElement.scrollTop >= scrollHeight) {
       this.endOfPage = true;
-    }else{
+    } else {
       this.endOfPage = false;
     }
-    
+
 
     this.animateOnScroll(ev.detail.currentY);
 
@@ -122,6 +122,7 @@ export class AnimationPage3Directive implements AfterViewInit {
     let masterHeaderTextOpacity;
     let imageTextOpacity;
     let imageTextUp;
+    let masterHeader3d;
 
     //--> get original heights
     if (this.imageHeight === undefined) {
@@ -166,6 +167,8 @@ export class AnimationPage3Directive implements AfterViewInit {
       imageTextOpacity = this.easeLinear(scrollTop, 100, 0, 150, 20);
       imageTextUp = this.easeLinear(scrollTop, 33, 70, 150, 0);
 
+      masterHeader3d = this.easeLinear(scrollTop, 1, 0.9, 70, 0);
+
     } else {
 
       //--> only in iOS: drag down the scroll 
@@ -180,6 +183,8 @@ export class AnimationPage3Directive implements AfterViewInit {
 
       masterHeaderOpacity = 0;
       masterHeaderTextOpacity = 0;
+
+      masterHeader3d = this.easeLinear(-scrollTop, 1, 2.5, 300);;
     }
 
     //---> patch DOM
@@ -187,21 +192,19 @@ export class AnimationPage3Directive implements AfterViewInit {
 
       //--> fab buttons fade
       this.renderer.setStyle(this.fabLeft1.el, `--background`, this.getRgbString(this.fabLeft1Rgb, fabButtonsFade), 2);
-      this.renderer.setStyle(this.fabRight1.el, `top`, fabButtonMove+'em');
-      this.renderer.setStyle(this.fabRight2.el, `top`, fabButtonMove+'em');
+      this.renderer.setStyle(this.fabRight1.el, `top`, fabButtonMove + 'em');
+      this.renderer.setStyle(this.fabRight2.el, `top`, fabButtonMove + 'em');
 
       this.renderer.setStyle(this.swiperRef, 'opacity', imageOpacity + '%');
       this.renderer.setStyle(this.fabRight3.el, 'opacity', imageOpacity + '%');
-      
+
       this.renderer.setStyle(this.headerRef.el, 'opacity', masterHeaderOpacity + '%');
       this.renderer.setStyle(this.headerTextRef, 'opacity', masterHeaderTextOpacity + '%');
 
-
-        //--> animate image scale (bump) + move down
-        this.animationCtrl.create()
-          .addElement(this.swiperRef)
-          .duration(100)
-          .to('transform', 'translate3d(0,' + imageMoveUp + 'px,0)').play();
+      this.animationCtrl.create()
+        .addElement(this.swiperRef)
+        .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1) '+'translate3d(0,' + imageMoveUp + 'px,0)')
+        .duration(100).play();
 
     });
 
