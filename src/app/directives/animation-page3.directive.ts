@@ -151,7 +151,7 @@ export class AnimationPage3Directive implements AfterViewInit {
 
       //--> master category image
       imageMoveUp = -this.easeLinear(scrollTop, 0, this.imageHeight / 3.5, 300);
-      fabButtonMove = this.easeLinear(scrollTop, 17, 3.7, 200);
+      fabButtonMove = this.easeLinear(scrollTop, 17, 3.5, 200);
       imagescaleDown = 1;
       imageOpacity = this.easeLinear(scrollTop, 100, 0, 200);
 
@@ -191,8 +191,18 @@ export class AnimationPage3Directive implements AfterViewInit {
 
       //--> fab buttons fade
       this.renderer.setStyle(this.fabLeft1.el, `--background`, this.getRgbString(this.fabLeft1Rgb, fabButtonsFade), 2);
-      this.renderer.setStyle(this.fabRight1.el, `top`, fabButtonMove + 'em');
-      this.renderer.setStyle(this.fabRight2.el, `top`, fabButtonMove + 'em');
+      //this.renderer.setStyle(this.fabRight1.el, `top`, fabButtonMove + 'em');
+      //this.renderer.setStyle(this.fabRight2.el, `top`, fabButtonMove + 'em');
+
+      this.animationCtrl.create()
+        .addElement(this.fabRight1.el)
+        .to('top', fabButtonMove + 'em')
+        .duration(100).play();
+
+      this.animationCtrl.create()
+        .addElement(this.fabRight2.el)
+        .to('top', fabButtonMove + 'em')
+        .duration(100).play();
 
       this.renderer.setStyle(this.swiperRef, 'opacity', imageOpacity + '%');
       this.renderer.setStyle(this.fabRight3.el, 'opacity', imageOpacity + '%');
@@ -202,7 +212,7 @@ export class AnimationPage3Directive implements AfterViewInit {
 
       this.animationCtrl.create()
         .addElement(this.swiperRef)
-        .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1) '+'translate3d(0,' + imageMoveUp + 'px,0)')
+        .to('transform', 'scale3d(' + masterHeader3d + ',' + masterHeader3d + ',1) ' + 'translate3d(0,' + imageMoveUp + 'px,0)')
         .duration(100).play();
 
     });
