@@ -118,7 +118,6 @@ export class AnimationPage3Directive implements AfterViewInit {
     let bagseMoverOpacity;
     let fabButtonsFade;
     let fabButtonMove;
-    let fabButtonMove2;
     let masterHeaderTextOpacity;
     let imageTextOpacity;
     let imageTextUp;
@@ -153,7 +152,6 @@ export class AnimationPage3Directive implements AfterViewInit {
       //--> master category image
       imageMoveUp = -this.easeLinear(scrollTop, 0, this.imageHeight / 3.5, 300);
       fabButtonMove = this.easeLinear(scrollTop, 17, 3.7, 200);
-      fabButtonMove2 = scrollTop;
       imagescaleDown = 1;
       imageOpacity = this.easeLinear(scrollTop, 100, 0, 200);
 
@@ -173,6 +171,7 @@ export class AnimationPage3Directive implements AfterViewInit {
 
       //--> only in iOS: drag down the scroll 
       imageMoveUp = 0;
+      fabButtonMove = 17;
       imagescaleDown = this.easeLinear(-scrollTop, 1, 2.5, 300);
       imageOpacity = 100;
       moveWidth = 0;
