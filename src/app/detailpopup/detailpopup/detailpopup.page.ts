@@ -13,6 +13,7 @@ export class DetailpopupPage implements OnInit, AfterViewInit {
   @ViewChild('header') headerImage: ElementRef;
   @ViewChild('addtocart') addtocart: any;
   @ViewChild('headerbar') headerbar: any;
+  @ViewChild('CNT') CNT: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -26,6 +27,8 @@ export class DetailpopupPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+    //const mw = this.CNT.el.parentElement.parentElement.querySelector('.modal-wrapper');
 
     const coords = this.navParams.get('coords');
 
