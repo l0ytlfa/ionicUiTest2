@@ -39,7 +39,7 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.headerImage.nativeElement, 'height', coords.h + 'px');
     this.renderer.setStyle(this.headerImage.nativeElement, 'transform', `translate3d(${coords.x}px, ${coords.y - 56}px, 0) scale3d(1, 1, 1)`);
 
-    this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transform', `translate3d(${coords.x}px, ${Math.trunc(coords.clientHeight/1.65)}px, 0)`);
+    this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transform', `translate3d(${coords.x}px, ${Math.trunc(coords.clientHeight/1.75)}px, 0)`);
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'opacity','0');
     
 
