@@ -20,9 +20,7 @@ export function popupEnterAnimation(
         .addElement(mw)
         .duration(1000)
         .easing('cubic-bezier(.56,.09,.36,1.45)')
-        .beforeStyles({ 'backdrop-filter': 'blur(5px)',transform: 'scale3d(0.9,0.9,1) translate3d(0, 0, 0)', '--ion-background-color': 'rgb(1,1,1,0)', background: 'rgb(1,1,1,0)' })
-        .to('--ion-background-color', 'rgb(1,1,1,1)')
-        .to('background', 'rgb(1,1,1,1)');
+        .beforeStyles({ 'backdrop-filter': 'blur(10px) grayscale(30%)',transform: 'translate3d(0, 0, 0)', '--ion-background-color': 'rgb(1,1,1,0)', background: 'rgb(1,1,1,0)' })
 
     containerAnimation.addElement(cont).duration(800)
         .easing('cubic-bezier(.56,.09,.36,1.45)').beforeStyles({ color: 'transparent' })

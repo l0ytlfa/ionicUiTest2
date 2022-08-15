@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
 
-import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2, ViewChild } from '@angular/core';
 import { DomController } from '@ionic/angular';
 import { AnimationController, GestureController } from '@ionic/angular';
 
@@ -29,6 +29,7 @@ export class AnimationPage3Directive implements AfterViewInit {
   @Input() content: any;        //<-- master content reference
   @Input() spacer: any;         //<-- initial space for scroll list
   @Input() swiperRef: any;
+  
 
 
   spacerHeight: number;
@@ -53,6 +54,13 @@ export class AnimationPage3Directive implements AfterViewInit {
 
   @HostListener('ionScroll', ['$event']) async onContentScroll(ev: any) {
 
+    //debugger;
+    //console.log('>>> '+ (this.content.scrollHeight - this.content.contentHeight)+' , '+ this.content.scrollTop)
+
+    if(this.content.scrollTop == this.content.scrollHeight - this.content.contentHeight){
+      console.log("bottom was reached!");
+      }
+
     if (this.scrollElement === undefined) {
       this.scrollElement = await ev.target.getScrollElement();
     }
@@ -64,7 +72,6 @@ export class AnimationPage3Directive implements AfterViewInit {
     } else {
       this.endOfPage = false;
     }
-
 
     this.animateOnScroll(ev.detail.currentY);
 

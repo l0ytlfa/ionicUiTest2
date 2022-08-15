@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import {DetailpopupPage} from '../detailpopup/detailpopup/detailpopup.page';
-import {popupEnterAnimation} from '../detailpopup/detailpopup/popoveranimation';
+import {DetailspecialPage} from '../detailspecial/detailspecial.page';
+import {popupEnterAnimation} from '../detailspecial/popoveranimation';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +11,11 @@ import {popupEnterAnimation} from '../detailpopup/detailpopup/popoveranimation';
 })
 export class Tab2Page {
 
+  @ViewChild('cnt') CNT: any;
+  
+
   items: any[] = [];
+  scrollElement: any;
 
   constructor(private modalCtrl: ModalController) {
     for(let idx=1;idx<200;idx++){
@@ -19,18 +23,24 @@ export class Tab2Page {
     }
   }
 
-  onListItemClick($event){
+  async onListItemClick($event){
     const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
 
+    //--> get scroll container of parent
+    this.scrollElement = await this.CNT.getScrollElement();
+
     this.modalCtrl.create({
-      component: DetailpopupPage,
+      component: DetailspecialPage,
       enterAnimation: popupEnterAnimation,
       componentProps: {
         coords:{
           x: cr.x,
           y: cr.y,
           w: cr.width,
-          h: cr.height
+          h: cr.height,
+          clientHeight: this.scrollElement.clientHeight,
+          itemY: $event.currentTarget.getBoundingClientRect().y,
+          outContainer: this.CNT
         }
       }
     }).then((modal)=>{
