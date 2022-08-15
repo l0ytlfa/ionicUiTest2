@@ -44,6 +44,7 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
     
 
     this.renderer.setStyle(this.headerImage.nativeElement, 'transition', '0.2s ease-in-out');
+    this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transition', '0.2s ease-out');
 
     setTimeout(() => {
 

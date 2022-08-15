@@ -7,6 +7,9 @@ a.container {
 	--ion-item-background: #aab7f3d5;
 }
 
+.buttonTrasparent{
+    --background: transparent !important;
+  }
 
 //---> img loading
 
@@ -16,7 +19,7 @@ a.container {
 
 .img-fadeIn {
 	opacity: 1;
-	transition: opacity 1.0s;
+	transition: opacity 0.7s;
 }
 
 
