@@ -4,6 +4,9 @@ import { ModalController } from '@ionic/angular';
 import {DetailspecialPage} from '../detailspecial/detailspecial.page';
 import {popupEnterAnimation} from '../detailspecial/popoveranimation';
 
+import {CategoryselectorPage} from '../categoryselector/categoryselector.page';
+import {popupEnterAnimation as selectorAnimation} from '../categoryselector/popoveranimation';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -23,6 +26,8 @@ export class Tab2Page {
     }
   }
 
+
+  //-->long press dialog
   async onListItemClick($event){
     const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
 
@@ -47,6 +52,33 @@ export class Tab2Page {
       modal.present();
     });
 
+  }
+
+  
+  //--> category selector dialog
+  async gotoselector($event){
+    const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
+
+    //--> get scroll container of parent
+    this.scrollElement = await this.CNT.getScrollElement();
+
+    this.modalCtrl.create({
+      component: CategoryselectorPage,
+      enterAnimation: selectorAnimation,
+      componentProps: {
+        coords:{
+          x: cr.x,
+          y: cr.y,
+          w: cr.width,
+          h: cr.height,
+          clientHeight: this.scrollElement.clientHeight,
+          itemY: $event.currentTarget.getBoundingClientRect().y,
+          outContainer: this.CNT
+        }
+      }
+    }).then((modal)=>{
+      modal.present();
+    });
   }
 
 }

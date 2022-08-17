@@ -26,8 +26,8 @@
   </ion-fab>
 
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
-  [style.right]="'3em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" >
-  <ion-fab-button size="small" #fabright1 style="--box-shadow:0">
+  [style.right]="'3em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'">
+  <ion-fab-button size="small" #fabright1 style="--box-shadow:0" (click)="gotoselector($event)">
     <ion-icon name="layers-outline"></ion-icon>
   </ion-fab-button>
   </ion-fab>

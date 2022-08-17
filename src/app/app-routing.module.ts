@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'detailspecial',
     loadChildren: () => import('./detailspecial/detailspecial.module').then( m => m.DetailspecialPageModule)
+  },
+  {
+    path: 'categoryselector',
+    loadChildren: () => import('./categoryselector/categoryselector.module').then( m => m.CategoryselectorPageModule)
   }
 ];
 @NgModule({
