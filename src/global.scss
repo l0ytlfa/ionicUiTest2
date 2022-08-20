@@ -85,3 +85,13 @@ ion-tab-button:focus {
 	animation-name: bouncein;
 	animation-timing-function: ease-in-out;
 }
+
+.popoverBackDrop{
+	backdrop-filter: blur(2px) grayscale(40%);
+}
+
+
+//---> FIX FIX FIX for popover scroll
+.backdrop-no-scroll ion-content {
+    --overflow: hidden;
+}

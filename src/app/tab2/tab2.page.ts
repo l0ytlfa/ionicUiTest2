@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 import {DetailspecialPage} from '../detailspecial/detailspecial.page';
 import {popupEnterAnimation} from '../detailspecial/popoveranimation';
 
-import {CategoryselectorPage} from '../categoryselector/categoryselector.page';
-import {popupEnterAnimation as selectorAnimation} from '../categoryselector/popoveranimation';
+import {CategoryselectorPage} from '../categoryselectorpopover/categoryselector.page';
+import {popupEnterAnimation as selectorAnimation} from '../categoryselectorpopover/popoveranimation';
 
 @Component({
   selector: 'app-tab2',
@@ -20,7 +20,7 @@ export class Tab2Page {
   items: any[] = [];
   scrollElement: any;
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(private modalCtrl: ModalController, public popoverController: PopoverController) {
     for(let idx=1;idx<200;idx++){
       this.items.push({r1:'title here! '+idx,r2:'sub title here',r3:'description is long thing'});
     }
@@ -57,7 +57,20 @@ export class Tab2Page {
   
   //--> category selector dialog
   async gotoselector($event){
-    const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
+
+
+    const popover = await this.popoverController.create({
+      component: CategoryselectorPage,
+      event: $event,
+      showBackdrop: true,
+      animated: true,
+      //enterAnimation: selectorAnimation,
+      cssClass: 'popoverBackDrop'
+    });
+
+    await popover.present();
+
+/*    const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
 
     //--> get scroll container of parent
     this.scrollElement = await this.CNT.getScrollElement();
@@ -78,7 +91,7 @@ export class Tab2Page {
       }
     }).then((modal)=>{
       modal.present();
-    });
+    });*/
   }
 
 }
