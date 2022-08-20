@@ -58,13 +58,12 @@ export class Tab2Page {
   //--> category selector dialog
   async gotoselector($event){
 
-
     const popover = await this.popoverController.create({
       component: CategoryselectorPage,
       event: $event,
       showBackdrop: true,
       animated: true,
-      //enterAnimation: selectorAnimation,
+      enterAnimation: selectorAnimation,
       cssClass: 'popoverBackDrop'
     });
 
