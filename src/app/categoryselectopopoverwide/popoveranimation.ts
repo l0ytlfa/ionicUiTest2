@@ -18,10 +18,10 @@ export const popupEnterAnimation = (baseEl: HTMLElement, options?: any): Animati
   const bodyHeight = (baseEl.ownerDocument as any).defaultView.innerHeight;
 
  // If ev was passed, use that for target element
- const fte = window.document.querySelector('[customSelector]');
+ const fte = window.document.querySelector('[customSelector]');           //<----- NOTE NOTE COMMENT THIS IN REAL CLICK
+ const targetDim = fte && (fte as HTMLElement).getBoundingClientRect();   //<----- NOTE NOTE COMMENT THIS IN REAL CLICK
 
- //const targetDim = options.event  && options.event.target && (options.event.target as HTMLElement).getBoundingClientRect();
- const targetDim = fte && (fte as HTMLElement).getBoundingClientRect();
+ //const targetDim = options.event  && options.event.target && (options.event.target as HTMLElement).getBoundingClientRect();  //-----> DECOMMENT THIS
 
   const targetTop = targetDim != null && 'top' in targetDim ? targetDim.top : bodyHeight / 2 - contentHeight / 2;
   const targetLeft = targetDim != null && 'left' in targetDim ? targetDim.left : bodyWidth / 2;
