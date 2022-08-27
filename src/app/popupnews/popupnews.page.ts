@@ -35,8 +35,8 @@ export class PopupnewsPage implements OnInit {
       , m = u.find("img")
       , g = f.find("img")
       , p = n - s
-      //, y = f.attr("data-slide-bg-color");
-      ,y = '#D7A594';
+      ,y = v.attr("data-slide-bg-color");
+
     a.css("background-color", y),
     v.transform("scale(0.6)"),
     m.transition(1e3).transform("scale(1.2)"),

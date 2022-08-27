@@ -17,33 +17,33 @@
 
   <swiper style="width: 100%;height: 100%;" [speed]="1300" [allowTouchMove]="false" [parallax]="true"
   [on]="{transitionStart: this.transitionStart.bind(this),transitionEnd:this.transitionEnd.bind(this),init:this.initswiper.bind(this)}" #swiper>
-  <ng-template swiperSlide data-slide-bg-color="#9FA051">
+  <ng-template swiperSlide>
 
     <div class="fashion-slider-title" data-swiper-parallax="-130%" style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
       <div class="fashion-slider-title-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">mamma</div>
     </div>
 
-    <div class="fashion-slider-scale">
-      <img src="../../assets/category_hdr_sushi.JPG" />
+    <div class="fashion-slider-scale" data-slide-bg-color="#9B89C5">
+      <img src="../../assets/category_hdr_sushi.JPG"/>
     </div>
   </ng-template>
-  <ng-template swiperSlide data-slide-bg-color="#9FA051">
+  <ng-template swiperSlide >
 
     <div class="fashion-slider-title" data-swiper-parallax="-130%" style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
       <div class="fashion-slider-title-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">che</div>
     </div>
 
-    <div class="fashion-slider-scale" >
+    <div class="fashion-slider-scale" data-slide-bg-color="#9FA051" >
       <img src="../../assets/sushi__34_.jpeg"/>
     </div>
   </ng-template>
-  <ng-template swiperSlide data-slide-bg-color="#9FA051">
+  <ng-template swiperSlide>
 
     <div class="fashion-slider-title" data-swiper-parallax="-130%" style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
       <div class="fashion-slider-title-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">fatica !!!</div>
     </div>
 
-    <div class="fashion-slider-scale">
+    <div class="fashion-slider-scale" data-slide-bg-color="#D7A594">
       <img src="../../assets/sushi__1_.jpeg"/>
     </div>
   </ng-template>
