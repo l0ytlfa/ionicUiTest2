@@ -34,7 +34,7 @@
   
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
   [style.right]="'0em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" >
-  <ion-fab-button size="small" #fabright2 style="--box-shadow:0">
+  <ion-fab-button size="small" #fabright2 style="--box-shadow:0" (click)="gotonews($event)">
     <ion-icon name="cart"></ion-icon>
   </ion-fab-button>
   </ion-fab>  

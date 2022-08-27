@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, OnInit, ElementRef, Renderer2, ViewChild, AfterViewInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { AnimationController, GestureController } from '@ionic/angular';
@@ -13,7 +14,7 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
   @ViewChild('CNT') CNT: any;
   @ViewChild('buttonsDiv') buttonsDiv: any;
 
-  popupVars: any
+  popupVars: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -33,7 +34,7 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     const coords = this.navParams.get('coords');
-    this.popupVars = coords
+    this.popupVars = coords;
 
     this.renderer.setStyle(this.headerImage.nativeElement, 'width', coords.w + 'px');
     this.renderer.setStyle(this.headerImage.nativeElement, 'height', coords.h + 'px');
@@ -41,7 +42,6 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
 
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transform', `translate3d(${coords.x}px, ${Math.trunc(coords.clientHeight/1.75)}px, 0)`);
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'opacity','0');
-    
 
     this.renderer.setStyle(this.headerImage.nativeElement, 'transition', '0.2s ease-in-out');
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transition', '0.2s ease-out');
@@ -57,16 +57,16 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
 
       const an2 = this.animationCtrl.create()
         .addElement(this.headerImage.nativeElement)
-        .to('height', '30%')
+        .to('height', '50%')
         .duration(timing);
 
       const an3 = this.animationCtrl.create()
         .addElement(this.headerImage.nativeElement)
-        .to('transform', 'translate3d('+coords.x+'px, '+Math.trunc(coords.clientHeight/3)+'px, 0) scale3d(1, 1, 1)')
+        .to('transform', 'translate3d('+coords.x+'px, '+Math.trunc(coords.clientHeight/5.2)+'px, 0) scale3d(1, 1, 1)')
         .duration(timing);
 
       const an4 = this.animationCtrl.create()
-      .addElement( coords.outContainer.el)
+      .addElement( coords.outContainer)
       .to('transform', 'scale3d(0.97,0.97,0.97)')
       .duration(timing);
 
@@ -96,7 +96,6 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
       .duration(100).play().then(()=>{
         this.modalCtrl.dismiss();
       });
-    
   }
 
 }

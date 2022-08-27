@@ -7,6 +7,9 @@ import {popupEnterAnimation} from '../detailspecial/popoveranimation';
 import {CategoryselectorPage} from '../categoryselectorpopover/categoryselector.page';
 import {popupEnterAnimation as selectorAnimation} from '../categoryselectorpopover/popoveranimation';
 
+import {PopupnewsPage} from '../popupnews/popupnews.page';
+import {popupEnterAnimation as newsAnimation} from '../popupnews/popovernewsanimation';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -15,7 +18,6 @@ import {popupEnterAnimation as selectorAnimation} from '../categoryselectorpopov
 export class Tab2Page {
 
   @ViewChild('cnt') CNT: any;
-  
 
   items: any[] = [];
   scrollElement: any;
@@ -45,7 +47,7 @@ export class Tab2Page {
           h: cr.height,
           clientHeight: this.scrollElement.clientHeight,
           itemY: $event.currentTarget.getBoundingClientRect().y,
-          outContainer: this.CNT
+          outContainer: this.CNT.el.parentElement.parentElement.parentElement
         }
       }
     }).then((modal)=>{
@@ -54,7 +56,7 @@ export class Tab2Page {
 
   }
 
-  
+
   //--> category selector dialog
   async gotoselector($event){
 
@@ -68,6 +70,18 @@ export class Tab2Page {
     });
 
     await popover.present();
+
+  }
+
+  async gotonews($event){
+
+    this.modalCtrl.create({
+      component: PopupnewsPage,
+      enterAnimation: newsAnimation,
+      cssClass: 'popoverBackDrop'
+    }).then((modal)=>{
+      modal.present();
+    });
 
 /*    const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
 

@@ -5,7 +5,7 @@
   <div class="container">
     <div #header>
       <div class="loader" style="position: absolute;left: 42%;" *ngIf="!lclimg.loaded">Loading...</div>
-      <ion-img src="https://images2.alphacoders.com/126/1263621.png" style="width: 90%;height: 30%;border-radius:0.8em;" 
+      <ion-img src="../../assets/googleimg.png" style="width: 90%;height: 50%;border-radius:0.8em;" 
         (ionImgWillLoad)="lclimg.loaded = false" (ionImgDidLoad)="lclimg.loaded = true" 
         [ngClass]="{'img-loaded':!lclimg.loaded,'img-fadeIn':lclimg.loaded}"  class="roundimg"
       #lclimg></ion-img>

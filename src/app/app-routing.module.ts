@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'categoryselector',
     loadChildren: () => import('./categoryselector/categoryselector.module').then( m => m.CategoryselectorPageModule)
+  },
+  {
+    path: 'popupnews',
+    loadChildren: () => import('./popupnews/popupnews.module').then( m => m.PopupnewsPageModule)
   }
 ];
 @NgModule({
