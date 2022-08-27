@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'popupnews',
     loadChildren: () => import('./popupnews/popupnews.module').then( m => m.PopupnewsPageModule)
+  },
+  {
+    path: 'popupnewsstatic',
+    loadChildren: () => import('./popupnewsstatic/popupnewsstatic.module').then( m => m.PopupnewsstaticPageModule)
   }
 ];
 @NgModule({

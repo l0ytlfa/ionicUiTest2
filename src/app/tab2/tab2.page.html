@@ -20,7 +20,7 @@
   <!-- fabs header https://ionic.io/ionicons -->
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
   [style.left]="'-1em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" >
-  <ion-fab-button size="small" #fableft1 style="--box-shadow:0">  
+  <ion-fab-button size="small" #fableft1 style="--box-shadow:0" (click)="gotonewsstatic($event)">  
     <ion-icon name="chevron-back-outline"></ion-icon>
   </ion-fab-button>
   </ion-fab>

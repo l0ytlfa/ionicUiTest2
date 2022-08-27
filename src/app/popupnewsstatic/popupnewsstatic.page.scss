@@ -1,0 +1,69 @@
+
+
+
+.flexContainerPopover {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+}
+
+.logo {
+	width: 35%;
+	padding-bottom: 1em;
+}
+
+.closeButton {
+	position: fixed;
+	bottom: 2em;
+	z-index: 100;
+	width: 99%;
+    --background: rgb(1,1,1,0);
+    --background-activated: transparent;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.showDiv {
+    width: 85%;
+    height: 60%;
+    background: #7b7272;
+    border-radius: 0.4em;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.upperText{
+    font-weight: bold;
+    padding-bottom: 1em;
+}
+
+.centralImage{
+    width: 80%;
+}
+
+.lowerText{
+    font-weight: bold;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+.lowerText2{
+    color: darkgray;
+    padding-bottom: 4em;
+}
+
+.gotoButton{
+    width: 80%;
+    --border-radius: 3em;
+    --background: white;
+    color: black;
+}
+
+.roundedButton :host(.button-native){
+    border-radius: 3em;
+}

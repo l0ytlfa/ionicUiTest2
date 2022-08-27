@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, ViewChild } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 
@@ -9,6 +10,9 @@ import {popupEnterAnimation as selectorAnimation} from '../categoryselectorpopov
 
 import {PopupnewsPage} from '../popupnews/popupnews.page';
 import {popupEnterAnimation as newsAnimation} from '../popupnews/popovernewsanimation';
+
+import {PopupnewsstaticPage} from '../popupnewsstatic/popupnewsstatic.page';
+import {popupEnterAnimation as newsstaticAnimation} from '../popupnewsstatic/popovernewsstaticanimation';
 
 @Component({
   selector: 'app-tab2',
@@ -70,6 +74,17 @@ export class Tab2Page {
     });
 
     await popover.present();
+
+  }
+
+  async gotonewsstatic($event){
+    this.modalCtrl.create({
+      component: PopupnewsstaticPage,
+      enterAnimation: newsstaticAnimation,
+      cssClass: 'popoverBackDropDarker'
+    }).then((modal)=>{
+      modal.present();
+    });
 
   }
 
