@@ -46,3 +46,15 @@
     visibility: hidden;
 }
   
+
+
+.closeButton {
+	position: fixed;
+	bottom: 0.3em;
+	z-index: 100;
+	width: 99%;
+    --background: rgb(1,1,1,0);
+    --background-activated: transparent;
+    font-weight: bold;
+    font-size: 1.8em;
+}

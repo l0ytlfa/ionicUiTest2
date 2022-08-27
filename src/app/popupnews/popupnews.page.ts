@@ -4,6 +4,7 @@
 /* eslint-disable one-var */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 import SwiperCore, { Parallax } from 'swiper';
 
@@ -19,17 +20,24 @@ export class PopupnewsPage implements OnInit {
   @ViewChild('swiper') swiperRef: any;
   @ViewChild('SPREV') sprev: any;
   @ViewChild('SNEXT') snext: any;
-
+  @ViewChild('CLOSEBUTTON') closebutton: any;
 
   o: any;
   l: any;
   i: any;
 
-  constructor() { }
+  constructor( private modalCtrl: ModalController) { }
 
   ngOnInit() {
 
   }
+
+  closeDialog($event){
+    this.modalCtrl.dismiss();
+  }
+
+
+  //-------> swiper effects
 
   transitionStart(e){
     const {slides: r, previousIndex: s, activeIndex: n, $el: a} = e;
@@ -79,6 +87,9 @@ export class PopupnewsPage implements OnInit {
     //---> manage buttons hide / show
     s === 0 ? this.sprev.el.classList.add('hidePrevNextButton') : this.sprev.el.classList.remove('hidePrevNextButton'),
     s === r.length - 1 ? this.snext.el.classList.add('hidePrevNextButton') : this.snext.el.classList.remove('hidePrevNextButton');
+
+    //--> close button
+    s === r.length - 1 ? this.closebutton.el.classList.remove('hidePrevNextButton') : this.closebutton.el.classList.add('hidePrevNextButton');
 
   }
 
