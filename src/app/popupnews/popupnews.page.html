@@ -1,56 +1,80 @@
-
 <ion-content class="fashion-slider">
 
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
-  [style.left]="'-1em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" >
-  <ion-fab-button size="small" #fableft1 style="--box-shadow:0" (click)="prevSlide($event)" class="buttonTrasparent">  
-    <ion-icon name="chevron-back-outline"></ion-icon>
-  </ion-fab-button>
+    [style.left]="'-1em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" #SPREV>
+    <ion-fab-button size="small" #fableft1 style="--box-shadow:0" (click)="prevSlide($event)" class="buttonTrasparent">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-fab-button>
   </ion-fab>
 
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
-  [style.right]="'0em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" >
-  <ion-fab-button size="small" #fabright2 style="--box-shadow:0" (click)="nextSlide($event)" class="buttonTrasparent">
-    <ion-icon name="chevron-forward-outline"></ion-icon>
-  </ion-fab-button>
-  </ion-fab>  
+    [style.right]="'0em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" #SNEXT>
+    <ion-fab-button size="small" #fabright2 style="--box-shadow:0" (click)="nextSlide($event)" class="buttonTrasparent">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <swiper style="width: 100%;height: 100%;" [speed]="1300" [allowTouchMove]="false" [parallax]="true"
-  [on]="{transitionStart: this.transitionStart.bind(this),transitionEnd:this.transitionEnd.bind(this),init:this.initswiper.bind(this)}" #swiper>
-  <ng-template swiperSlide>
+    [on]="{transitionStart: this.transitionStart.bind(this),transitionEnd:this.transitionEnd.bind(this),init:this.initswiper.bind(this)}"
+    #swiper>
+    <ng-template swiperSlide>
 
-    <div class="fashion-slider-title" data-swiper-parallax="-130%" style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
-      <div class="fashion-slider-title-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">mamma</div>
-    </div>
+      <div class="fashion-slider-title" data-swiper-parallax="-130%"
+        style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
+        <div class="fashion-slider-title-text"
+          style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">mamma</div>
+      </div>
 
-    <div class="fashion-slider-textsmall">
-      <div class="fashion-slider-textsmall-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 25px;">small text additional to title</div>
-    </div>
+      <div class="fashion-slider-textsmall"
+        style="backdrop-filter: blur(15px) brightness(70%);padding: 0.2em;width: 100%;">
+        <div class="fashion-slider-textsmall-text"
+          style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 25px;">small text additional to title
+        </div>
+      </div>
 
-    <div class="fashion-slider-scale" data-slide-bg-color="#9B89C5">
-      <img src="../../assets/category_hdr_sushi.JPG"/>
-    </div>
-  </ng-template>
-  <ng-template swiperSlide >
 
-    <div class="fashion-slider-title" data-swiper-parallax="-130%" style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
-      <div class="fashion-slider-title-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">che</div>
-    </div>
+      <div class="fashion-slider-scale">
+        <img src="../../assets/category_hdr_sushi.JPG" />
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
 
-    <div class="fashion-slider-scale" data-slide-bg-color="#9FA051" >
-      <img src="../../assets/sushi__34_.jpeg"/>
-    </div>
-  </ng-template>
-  <ng-template swiperSlide>
+      <div class="fashion-slider-title" data-swiper-parallax="-130%"
+        style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
+        <div class="fashion-slider-title-text"
+          style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">che</div>
+      </div>
 
-    <div class="fashion-slider-title" data-swiper-parallax="-130%" style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
-      <div class="fashion-slider-title-text" style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">fatica !!!</div>
-    </div>
+      <div class="fashion-slider-textsmall"
+        style="backdrop-filter: blur(15px) brightness(70%);padding: 0.2em;width: 100%;">
+        <div class="fashion-slider-textsmall-text"
+          style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 25px;">other small info text for my
+          customers</div>
+      </div>
 
-    <div class="fashion-slider-scale" data-slide-bg-color="#D7A594">
-      <img src="../../assets/sushi__1_.jpeg"/>
-    </div>
-  </ng-template>
-</swiper>
+      <div class="fashion-slider-scale">
+        <img src="../../assets/sushi__34_.jpeg" />
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+
+      <div class="fashion-slider-title" data-swiper-parallax="-130%"
+        style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;">
+        <div class="fashion-slider-title-text"
+          style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 60px;">fatica !!!</div>
+      </div>
+
+      <div class="fashion-slider-textsmall"
+        style="backdrop-filter: blur(15px) brightness(70%);padding: 0.2em;width: 100%;">
+        <div class="fashion-slider-textsmall-text"
+          style="transition-duration: 1000ms; color: rgb(255, 255, 255);font-size: 25px;">small text additional to title
+        </div>
+      </div>
+
+      <div class="fashion-slider-scale">
+        <img src="../../assets/sushi__1_.jpeg" />
+      </div>
+    </ng-template>
+  </swiper>
 
 </ion-content>
