@@ -72,7 +72,7 @@ export class PopupnewsPage implements OnInit {
     this.stopAnimations(n);
 
     const a = r.eq(s).attr('data-slide-bg-color');
-    n.css('background-color', '#D7A594'),
+    n.css('background-color', a),
     e.emit('transitionEnd');
 
   }

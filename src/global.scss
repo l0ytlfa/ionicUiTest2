@@ -113,6 +113,7 @@ ion-tab-button:focus {
 .fashion-slider .swiper-slide {
     text-align: center;
     display: flex;
+	flex-direction: column;
     justify-content: center;
     align-items: center
 }
