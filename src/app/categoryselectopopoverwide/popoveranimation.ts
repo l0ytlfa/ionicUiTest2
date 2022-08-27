@@ -9,6 +9,7 @@ export const popupEnterAnimation = (baseEl: HTMLElement, options?: any): Animati
   let originX = 'left';
 
   const contentEl = baseEl.shadowRoot.querySelector('.popover-content') as HTMLElement;
+
   const contentDimentions = contentEl.getBoundingClientRect();
   const contentWidth = contentDimentions.width;
   const contentHeight = contentDimentions.height;
@@ -16,8 +17,11 @@ export const popupEnterAnimation = (baseEl: HTMLElement, options?: any): Animati
   const bodyWidth = (baseEl.ownerDocument as any).defaultView.innerWidth;
   const bodyHeight = (baseEl.ownerDocument as any).defaultView.innerHeight;
 
-  // If ev was passed, use that for target element
-  const targetDim = options.event  && options.event.target && (options.event.target as HTMLElement).getBoundingClientRect();
+ // If ev was passed, use that for target element
+ const fte = window.document.querySelector('[customSelector]');
+
+ //const targetDim = options.event  && options.event.target && (options.event.target as HTMLElement).getBoundingClientRect();
+ const targetDim = fte && (fte as HTMLElement).getBoundingClientRect();
 
   const targetTop = targetDim != null && 'top' in targetDim ? targetDim.top : bodyHeight / 2 - contentHeight / 2;
   const targetLeft = targetDim != null && 'left' in targetDim ? targetDim.left : bodyWidth / 2;
@@ -25,6 +29,7 @@ export const popupEnterAnimation = (baseEl: HTMLElement, options?: any): Animati
   const targetHeight = (targetDim && targetDim.height) || 0;
 
   const arrowEl = baseEl.shadowRoot.querySelector('.popover-arrow') as HTMLElement;
+  arrowEl.classList.add('popoverBackColor');
 
   const arrowDim = arrowEl.getBoundingClientRect();
   const arrowWidth = arrowDim.width;

@@ -86,12 +86,19 @@ ion-tab-button:focus {
 	animation-timing-function: ease-in-out;
 }
 
+.popoverBackDropWide{
+	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);
+	--width: 80%;
+	--background: #111;
+}
+
+
 .popoverBackDrop{
 	backdrop-filter: blur(2px) grayscale(40%);
 }
 
 .popoverBackDropDarker{
-	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);;
+	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);
 }
 
 //---> FIX FIX FIX for popover scroll

@@ -8,6 +8,9 @@ import {popupEnterAnimation} from '../detailspecial/popoveranimation';
 import {CategoryselectorPage} from '../categoryselectorpopover/categoryselector.page';
 import {popupEnterAnimation as selectorAnimation} from '../categoryselectorpopover/popoveranimation';
 
+import {CategoryselectopopoverwidePage} from '../categoryselectopopoverwide/categoryselectopopoverwide.page';
+import {popupEnterAnimation as selectorPopoverWideAnimation} from '../categoryselectopopoverwide/popoveranimation';
+
 import {PopupnewsPage} from '../popupnews/popupnews.page';
 import {popupEnterAnimation as newsAnimation} from '../popupnews/popovernewsanimation';
 
@@ -65,6 +68,20 @@ export class Tab2Page {
   async gotoselector($event){
 
     const popover = await this.popoverController.create({
+      component: CategoryselectopopoverwidePage,
+      event: $event,
+      showBackdrop: true,
+      animated: true,
+      enterAnimation: selectorPopoverWideAnimation,
+      cssClass: 'popoverBackDropWide',
+      size: 'auto'
+    });
+
+    await popover.present();
+
+    /*
+    //---> top most popover
+    const popover = await this.popoverController.create({
       component: CategoryselectorPage,
       event: $event,
       showBackdrop: true,
@@ -74,6 +91,7 @@ export class Tab2Page {
     });
 
     await popover.present();
+    */
 
   }
 

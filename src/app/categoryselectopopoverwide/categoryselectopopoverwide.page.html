@@ -1,0 +1,97 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>our categories</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="secondary" (click)="closeSubCategorySelect($event)">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- M 25 5 Q 37.5 5 50 5 Q 52 5 53 7 M 53 7 L 64 23 Q 65 26 62 26 M 62 26 L 25 26 Q 24 26 23 24 M 23 24 L 23 7 Q 23 5 25 5 -->
+
+<ion-content style="--background: #111;">
+  <div style="width:100%;height: 3em;display: flex;align-content: center;align-items: center;padding-top: 0.7em;">
+    <ion-icon name="heart-outline" class="textCategory" style="font-size: 1.3em;padding-left: 1em;padding-right: 1em;"></ion-icon>
+    <ion-label class="textCategory" style="font-size: 1.1em;font-weight: bold;">select your category</ion-label>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-card style="margin: 0.3em;">
+          <img src="../../assets/category_hdr_sushi.JPG" (click)="subCategorySelect($event)"/>
+        <ion-card-header style="background: #9f99e830;height: 7em;" (click)="subCategorySelect($event)">
+          <ion-card-subtitle>sushi</ion-card-subtitle>
+          <ion-card-title style="font-size: 1.2em;">standard magic</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      
+      </ion-col>
+
+      <ion-col>
+
+        <ion-card style="margin: 0.3em;">
+          <img src="../../assets/category_hdr_sushi.JPG" (click)="subCategorySelect($event)"/>
+        <ion-card-header style="background: #e8a89930;height: 7em;" (click)="subCategorySelect($event)">
+          <ion-card-subtitle>sushi</ion-card-subtitle>
+          <ion-card-title style="font-size: 1.2em;">standard magic</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      
+      </ion-col>
+    
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+
+        <ion-card style="margin: 0.3em;">
+          <img src="../../assets/category_hdr_sushi.JPG" (click)="subCategorySelect($event)"/>
+        <ion-card-header style="background: #99e8b830;height: 7em;" (click)="subCategorySelect($event)">
+          <ion-card-subtitle>sushi</ion-card-subtitle>
+          <ion-card-title style="font-size: 1.2em;">standard magic</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      
+      </ion-col>
+
+      <ion-col>
+
+        <ion-card style="margin: 0.3em;">
+          <img src="../../assets/category_hdr_sushi.JPG" (click)="subCategorySelect($event)"/>
+        <ion-card-header style="background: #e8a89930;height: 7em;" (click)="subCategorySelect($event)">
+          <ion-card-subtitle>sushi</ion-card-subtitle>
+          <ion-card-title style="font-size: 1.2em;">standard magic</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      
+      </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+
+ <!-- <div [style.z-index]="'0'" [style.position]="'fixed'" [style.width]="'100%'" [style.height]="'22em'" #swiperRef>
+    <swiper [pagination]="pagination" [spaceBetween]="30" [slidesPerView]="2"
+      [grabCursor]="true">
+      <ng-template swiperSlide>
+        <div class="img-gradient">
+          <ion-img src="../../assets/category_hdr_sushi.JPG"></ion-img>
+        </div>
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="img-gradient">
+          <ion-img src="../../assets/sushi__34_.jpeg"></ion-img>
+        </div>
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="img-gradient">
+          <ion-img src="../../assets/sushi__1_.jpeg"></ion-img>
+        </div>
+      </ng-template>
+    </swiper>
+  </div> -->
+
+</ion-content>

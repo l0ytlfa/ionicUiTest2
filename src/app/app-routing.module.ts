@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'popupnewsstatic',
     loadChildren: () => import('./popupnewsstatic/popupnewsstatic.module').then( m => m.PopupnewsstaticPageModule)
+  },
+  {
+    path: 'categoryselectopopoverwide',
+    loadChildren: () => import('./categoryselectopopoverwide/categoryselectopopoverwide.module').then( m => m.CategoryselectopopoverwidePageModule)
   }
 ];
 @NgModule({
