@@ -16,7 +16,7 @@ import {popupEnterAnimation as newsAnimation} from '../popupnews/popovernewsanim
 
 import {PopupnewsstaticPage} from '../popupnewsstatic/popupnewsstatic.page';
 import {popupEnterAnimation as newsstaticAnimation} from '../popupnewsstatic/popovernewsstaticanimation';
-
+import {popupEnterAnimation as newsstaticExitAnimation} from '../popupnewsstatic/popovernewsstaticExitanimation';
 
 import {ToastanimationPage} from '../toastanimation/toastanimation.page';
 import {popupEnterAnimation as toastAnimation} from '../toastanimation/popoveranimation';
@@ -106,7 +106,8 @@ export class Tab2Page {
     this.modalCtrl.create({
       component: PopupnewsstaticPage,
       enterAnimation: newsstaticAnimation,
-      cssClass: 'popoverBackDropDarker',
+      leaveAnimation: newsstaticExitAnimation,
+      //cssClass: 'popoverBackDropDarker',
       animated: true
     }).then((modal)=>{
       modal.present();

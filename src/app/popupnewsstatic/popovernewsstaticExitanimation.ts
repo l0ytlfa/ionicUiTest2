@@ -8,7 +8,7 @@ export function popupEnterAnimation(
     options: any
 ): Animation {
 
-    baseEl.classList.add('popoverBackDropDarker');
+    baseEl.classList.remove('popoverBackDropDarker');
 
     const baseAnimation = createAnimation('baseAnimation');
     const popAnimation = createAnimation('popaniamtion');
@@ -23,7 +23,7 @@ export function popupEnterAnimation(
         .duration(300)
         .easing('cubic-bezier(0.01,1.21,1,0.98)')
         .beforeStyles({ '--ion-background-color': 'rgb(1,1,1,0)', background: 'rgb(1,1,1,0)'})
-        .to('transform','translate3d(0, 0, 0)');
+        .to('transform','translate3d(0, 100vh, 0)');
 
     containerAnimation.addElement(cont).duration(800)
         .easing('cubic-bezier(.56,.09,.36,1.45)').beforeStyles({ color: 'transparent' })
