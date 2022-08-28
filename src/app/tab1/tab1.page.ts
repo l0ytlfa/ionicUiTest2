@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -48,6 +51,10 @@ export class Tab1Page {
 
     const { role, data } = await actionSheet.onDidDismiss();
     console.log('onDidDismiss resolved with role and data', role, data);
+  }
+
+  animationCreated($event){
+    console.log('Lottie files');
   }
 
 }
