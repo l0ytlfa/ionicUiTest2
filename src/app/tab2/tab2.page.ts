@@ -17,6 +17,12 @@ import {popupEnterAnimation as newsAnimation} from '../popupnews/popovernewsanim
 import {PopupnewsstaticPage} from '../popupnewsstatic/popupnewsstatic.page';
 import {popupEnterAnimation as newsstaticAnimation} from '../popupnewsstatic/popovernewsstaticanimation';
 
+
+import {ToastanimationPage} from '../toastanimation/toastanimation.page';
+import {popupEnterAnimation as toastAnimation} from '../toastanimation/popoveranimation';
+import {popupExitAnimation as toastExitAnimation} from '../toastanimation/popoveranimationExit';
+
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -96,10 +102,12 @@ export class Tab2Page {
   }
 
   async gotonewsstatic($event){
+
     this.modalCtrl.create({
       component: PopupnewsstaticPage,
       enterAnimation: newsstaticAnimation,
-      cssClass: 'popoverBackDropDarker'
+      cssClass: 'popoverBackDropDarker',
+      animated: true
     }).then((modal)=>{
       modal.present();
     });
@@ -116,6 +124,20 @@ export class Tab2Page {
       modal.present();
     });
 
+  }
+
+  async gototoast($event){
+
+    this.modalCtrl.create({
+      component: ToastanimationPage,
+      enterAnimation: toastAnimation,
+      leaveAnimation: toastExitAnimation,
+      //cssClass: 'popoverBackDropDarker'
+    }).then((modal)=>{
+      modal.present();
+    });
+
+  }
 /*    const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
 
     //--> get scroll container of parent
@@ -138,6 +160,6 @@ export class Tab2Page {
     }).then((modal)=>{
       modal.present();
     });*/
-  }
+  
 
 }

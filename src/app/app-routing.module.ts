@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'categoryselectopopoverwide',
     loadChildren: () => import('./categoryselectopopoverwide/categoryselectopopoverwide.module').then( m => m.CategoryselectopopoverwidePageModule)
+  },
+  {
+    path: 'toastanimation',
+    loadChildren: () => import('./toastanimation/toastanimation.module').then( m => m.ToastanimationPageModule)
   }
 ];
 @NgModule({

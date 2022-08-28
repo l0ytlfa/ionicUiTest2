@@ -26,6 +26,13 @@
   </ion-fab>
 
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
+  [style.left]="'2em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'" >
+  <ion-fab-button size="small" #fableft1 style="--box-shadow:0" (click)="gototoast($event)">  
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge [style.position]="'fixed'" [style.z-index]="'20'"
   [style.right]="'3em'" [style.top]="'var(--offset-top-button)'" [style.transform]="'scale(0.90,0.90)'">
   <ion-fab-button size="small" #fabright1 style="--box-shadow:0" (click)="gotoselector($event)">
     <ion-icon name="layers-outline"></ion-icon>
