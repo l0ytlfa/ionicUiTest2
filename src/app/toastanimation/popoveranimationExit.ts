@@ -28,7 +28,7 @@ export function popupExitAnimation(
         .addElement(mw)
         .duration(1000)
         .easing('cubic-bezier(0.01,1.21,1,0.98)')
-        .beforeStyles({ '--ion-background-color': 'rgb(1,1,1,0)', background: 'rgb(1,1,1,0)'})
+        .beforeStyles({ '--ion-background-color': 'rgb(1,1,1,0)', background: 'rgb(1,1,1,0)'});
 
     containerAnimation.addElement(cont).duration(800)
         .easing('cubic-bezier(.56,.09,.36,1.45)').beforeStyles({ color: 'transparent' })
