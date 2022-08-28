@@ -97,8 +97,13 @@ ion-tab-button:focus {
 	backdrop-filter: blur(2px) grayscale(40%);
 }
 
+@keyframes example {
+	0%   {backdrop-filter: blur(0px) grayscale(0%) brightness(100%)}
+	100% {backdrop-filter: blur(2px) grayscale(40%) brightness(50%)}
+  }
+
 .popoverBackDropDarker{
-	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);
+	animation: example 0.3s forwards;
 }
 
 //---> FIX FIX FIX for popover scroll

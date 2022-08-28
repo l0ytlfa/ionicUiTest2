@@ -107,7 +107,6 @@ export class Tab2Page {
       component: PopupnewsstaticPage,
       enterAnimation: newsstaticAnimation,
       leaveAnimation: newsstaticExitAnimation,
-      //cssClass: 'popoverBackDropDarker',
       animated: true
     }).then((modal)=>{
       modal.present();
