@@ -37,7 +37,7 @@ export class Tab2Page {
 
   constructor(private modalCtrl: ModalController, public popoverController: PopoverController) {
     for(let idx=1;idx<200;idx++){
-      this.items.push({r1:'title here! '+idx,r2:'sub title here',r3:'description is long thing'});
+      this.items.push({r1:'Sashimi ',r2:'gustosi e convenienti',r3:'description is long thing'});
     }
   }
 

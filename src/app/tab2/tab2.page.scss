@@ -57,3 +57,13 @@ ion-fab{
     background-position: 1000px 0;
   }
 }
+
+.img-gradient::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0, rgb(0, 0, 0) 100%);
+  margin-top: -150px;
+  height: 150px;
+  width: 100%;
+  content: '';
+}
