@@ -161,6 +161,32 @@ ion-tab-button:focus {
 }
 
 
+
+
+
+
+.movingTile div {
+	font-weight: bold !important;
+	animation-name: color-change;
+	animation-duration: 0.02s;
+	animation-direction: normal;
+	animation-fill-mode: both;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes color-change {
+	0% {
+		color: green;
+	}
+
+	100% {
+		color: white;
+	}
+}
+
+
+
+
 @keyframes name-of-animation {
 	0% {
 		transform: translate(var(--deltax), 0);
@@ -173,6 +199,7 @@ ion-tab-button:focus {
 	}
 }
 
+
 .movingTile::after {
 	content: ".";
 	height: 45%;
@@ -182,11 +209,12 @@ ion-tab-button:focus {
 	z-index: -10;
 	left: 0;
 	border-radius: 0.6em;
-	animation-name: name-of-animation ;
-	animation-duration: 0.3s;
+	animation-name: name-of-animation;
+	animation-duration: 0.2s;
 	animation-direction: normal;
 	animation-fill-mode: both;
 	animation-timing-function: ease-in-out;
+	padding-right: 0.3em;
 }
 
 .zindex999 {
