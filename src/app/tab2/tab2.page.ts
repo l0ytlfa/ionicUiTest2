@@ -145,7 +145,7 @@ export class Tab2Page implements OnInit {
 
   clickSlide(event) {
 
-    //--> start class ?
+
     var el = event[0].$wrapperEl[0].querySelector('.baseMovingTile');
     if (el !== null) {
 
@@ -160,6 +160,9 @@ export class Tab2Page implements OnInit {
 
       el.classList.remove('baseMovingTile');
       event[0].slides[event[0].clickedIndex].classList.add('movingTile');
+
+      el.classList.add('zindex999');
+      event[0].slides[event[0].clickedIndex].classList.remove('zindex999');
 
     } else {
 
@@ -176,6 +179,9 @@ export class Tab2Page implements OnInit {
 
       el.classList.remove('movingTile');
       event[0].slides[event[0].clickedIndex].classList.add('movingTile');
+      
+      el.classList.add('zindex999');
+      event[0].slides[event[0].clickedIndex].classList.remove('zindex999');
 
     }
 
@@ -184,17 +190,14 @@ export class Tab2Page implements OnInit {
 
   gototoast($event) {
 
-
-    debugger;
-
-    /*this.modalCtrl.create({
+  this.modalCtrl.create({
       component: ToastanimationPage,
       enterAnimation: toastAnimation,
       leaveAnimation: toastExitAnimation,
       //cssClass: 'popoverBackDropDarker'
     }).then((modal)=>{
       modal.present();
-    });*/
+    });
 
   }
 

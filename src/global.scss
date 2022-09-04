@@ -173,7 +173,6 @@ ion-tab-button:focus {
 	}
 }
 
-
 .movingTile::after {
 	content: ".";
 	height: 45%;
@@ -183,13 +182,13 @@ ion-tab-button:focus {
 	z-index: -10;
 	left: 0;
 	border-radius: 0.6em;
-	//transform-style: flat;
-	
-	//animation: name-of-animation 0.3s normal forwards ease-in-out;
-
 	animation-name: name-of-animation ;
 	animation-duration: 0.3s;
 	animation-direction: normal;
 	animation-fill-mode: both;
 	animation-timing-function: ease-in-out;
+}
+
+.zindex999 {
+	z-index: 999;
 }
