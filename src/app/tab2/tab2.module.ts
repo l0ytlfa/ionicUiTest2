@@ -10,6 +10,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { AnimationPage2Directive } from '..//directives/animation-page2.directive';
 
+import { SwiperModule } from 'swiper/angular';
+
 
 @NgModule({
   imports: [
@@ -18,7 +20,8 @@ import { AnimationPage2Directive } from '..//directives/animation-page2.directiv
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    ScrollingModule
+    ScrollingModule,
+    SwiperModule
   ],
   declarations: [Tab2Page,AnimationPage2Directive]
 })

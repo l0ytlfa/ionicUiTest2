@@ -33,7 +33,6 @@ export class ToastanimationPage implements OnInit, AfterViewInit {
           .delay(400)
           .duration(300);
 
-
         this.animationCtrl.create().addAnimation([an1]).play();
 
       });

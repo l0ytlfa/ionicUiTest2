@@ -94,28 +94,67 @@
 
   <!-- products group selector -->
   <ion-row [style.z-index]="'10'" [style.position]="'fixed'" [style.height]="'2.8em'" [style.width]="'100%'"
-    [style.background]="'black'" [style.opacity]="'0%'" [style.top]="'94.5%'" slot="fixed" #barRefBottom>
-    <div [style.height]="'1em'" [style.top]="'1em'" [style.left]="'2.6em'" [style.width]="'3.2em'" [style.z-index]="'1'"
-      [style.border-radius]="'0.6em'" [style.background]="'#3880ff'" [style.position]="'absolute'" #divcover></div>
-    <ion-slides (ionSlideTap)="slidePress($event)" pager="false" [options]="slideOpts" [style.padding-top]="'0.3em'"
+    [style.background]="'black'" [style.opacity]="'1'" [style.top]="'84.5%'" slot="fixed" #barRefBottom>
+    <!-- <div [style.height]="'1em'" [style.top]="'1em'" [style.left]="'2.6em'" [style.width]="'3.2em'" [style.z-index]="'1'"
+      [style.border-radius]="'0.6em'" [style.background]="'#3880ff'" [style.position]="'absolute'" #divcover></div> 
+    
+    
+    class="transparentBadge movingTile"
+    -->
+
+
+    <swiper [freeMode]="true" class="swiperpad"
+     [slidesPerView]="'auto'" [spaceBetween]="3" (tap)="clickSlide($event)"
+      #SWP>
+      <ng-template swiperSlide>
+        <div class="transparentBadge baseMovingTile">uramaki</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">nigiri</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">poke</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">futomaki</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">misto</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">special</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">convenienza</div> 
+      </ng-template>
+      <ng-template swiperSlide>
+        <div class="transparentBadge">edamame e altro</div> 
+      </ng-template>
+    </swiper>
+
+  </ion-row>
+
+  <!--
+    <ion-slides (ionSlideTap)="slidePress($event)" pager="false" [options]="swiperParams" [style.padding-top]="'0.3em'"
       #pgs>
       <ion-slide [style.height]="'2em'">
-        <ion-badge [style.width]="'7em'" [style.background]="'transparent'">sushi</ion-badge>
+        <ion-badge [style.width]="'7em'" class="backmove" >sushi</ion-badge>
       </ion-slide>
       <ion-slide [style.height]="'2em'">
-        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">DYP frozen</ion-badge>
+        <ion-badge color="primary" [style.width]="'7em'" >DYP frozen</ion-badge>
       </ion-slide>
       <ion-slide [style.height]="'2em'">
-        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">Atelier</ion-badge>
+        <ion-badge color="primary" [style.width]="'7em'" >Atelier</ion-badge>
       </ion-slide>
       <ion-slide [style.height]="'2em'">
-        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">Altro</ion-badge>
+        <ion-badge color="primary" [style.width]="'7em'" >Altro</ion-badge>
       </ion-slide>
       <ion-slide [style.height]="'2em'">
-        <ion-badge color="primary" [style.width]="'7em'" [style.background]="'transparent'">Italian style</ion-badge>
+        <ion-badge color="primary" [style.width]="'7em'" >Italian style</ion-badge>
       </ion-slide>
     </ion-slides>
-  </ion-row>
+  
+-->
 
 
 
@@ -130,7 +169,8 @@
           <div style="display:flex;flex-flow: row;height: 100%;width: 100%;">
             <div style="display:flex;flex-flow: column;height: 100%; width: 50%;">
               <h2 [style.color]="'white'" [style.margin-bottom]="'0px'" [style.margin-top]="'0.2em'">{{item.r1}}</h2>
-              <span [style.color]="'darkgray'" [style.font-size]="'0.7em'" style="font-weight: initial;">{{item.r2}}</span>
+              <span [style.color]="'darkgray'" [style.font-size]="'0.7em'"
+                style="font-weight: initial;">{{item.r2}}</span>
             </div>
 
             <ion-img src="../../assets/category_hdr_sushi.JPG" style="width: 50%;object-fit: cover;"

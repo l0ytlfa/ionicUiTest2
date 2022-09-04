@@ -86,65 +86,110 @@ ion-tab-button:focus {
 	animation-timing-function: ease-in-out;
 }
 
-.popoverBackDropWide{
+.popoverBackDropWide {
 	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);
 	--width: 80%;
 	--background: #111;
 }
 
 
-.popoverBackDrop{
+.popoverBackDrop {
 	backdrop-filter: blur(2px) grayscale(40%);
 }
 
 @keyframes example {
-	0%   {backdrop-filter: blur(0px) grayscale(0%) brightness(100%)}
-	100% {backdrop-filter: blur(2px) grayscale(40%) brightness(50%)}
-  }
+	0% {
+		backdrop-filter: blur(0px) grayscale(0%) brightness(100%)
+	}
 
-.popoverBackDropDarker{
+	100% {
+		backdrop-filter: blur(2px) grayscale(40%) brightness(50%)
+	}
+}
+
+.popoverBackDropDarker {
 	animation: example 0.3s forwards;
 }
 
 //---> FIX FIX FIX for popover scroll
 .backdrop-no-scroll ion-content {
-    --overflow: hidden;
+	--overflow: hidden;
 }
 
 
 //-------> swiper special
 
 .fashion-slider .swiper {
-    width: 100%;
-    height: 100%;
-    transition: 1s background-color 1.3s
+	width: 100%;
+	height: 100%;
+	transition: 1s background-color 1.3s
 }
 
 .fashion-slider .swiper-wrapper {
-    transition-delay: 1s;
-    transition-timing-function: cubic-bezier(.5,0,0,1)
+	transition-delay: 1s;
+	transition-timing-function: cubic-bezier(.5, 0, 0, 1)
 }
 
 .fashion-slider .swiper-slide {
-    text-align: center;
-    display: flex;
+	text-align: center;
+	display: flex;
 	flex-direction: column;
-    justify-content: center;
-    align-items: center
+	justify-content: center;
+	align-items: center
 }
 
 .fashion-slider-no-transition {
-    transition-duration: 0ms!important;
-    transition-delay: 0ms!important;
-    transition-property: none!important
+	transition-duration: 0ms !important;
+	transition-delay: 0ms !important;
+	transition-property: none !important
 }
 
 .fashion-slider-no-transition *:not(.swiper-wrapper) {
-    transition-duration: 0ms!important;
-    transition-delay: 0ms!important;
-    transition-property: none!important
+	transition-duration: 0ms !important;
+	transition-delay: 0ms !important;
+	transition-property: none !important
 }
 
 .fashion-slider-no-transition .swiper-wrapper {
-    transition-delay: 0ms!important
+	transition-delay: 0ms !important
+}
+
+
+
+.swiper-slide {
+	flex-shrink: 100 !important;
+}
+
+
+@keyframes name-of-animation {
+	0% {
+		transform: translate(var(--deltax), 0);
+		width: var(--widthstart);
+	}
+
+	100% {
+		transform: translate(0, 0);
+		width: var(--widthend);
+	}
+}
+
+
+.movingTile::after {
+	content: ".";
+	height: 45%;
+	color: green;
+	position: absolute;
+	background: green;
+	z-index: -10;
+	left: 0;
+	border-radius: 0.6em;
+	//transform-style: flat;
+	
+	//animation: name-of-animation 0.3s normal forwards ease-in-out;
+
+	animation-name: name-of-animation ;
+	animation-duration: 0.3s;
+	animation-direction: normal;
+	animation-fill-mode: both;
+	animation-timing-function: ease-in-out;
 }
