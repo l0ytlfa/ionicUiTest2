@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { AnimationController, DomController, ModalController } from '@ionic/angular';
+import { AnimationController, DomController, ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-toastanimation',
@@ -9,11 +9,19 @@ import { AnimationController, DomController, ModalController } from '@ionic/angu
 export class ToastanimationPage implements OnInit, AfterViewInit {
 
   @ViewChild('lottie') animationElement: any;
+  @ViewChild('masterdiv') masterdiv: any;
+  
   lottieAnimation: any;
+  primaryText: string;
+  primaryColor: string;
 
-  constructor(private modalCtrl: ModalController,private animationCtrl: AnimationController, private domCtrl: DomController) { }
+  constructor(private modalCtrl: ModalController,private animationCtrl: AnimationController, private domCtrl: DomController,
+    private navParams: NavParams) { }
 
   ngOnInit() {
+    const coords = this.navParams.get('coords');
+    this.primaryText = coords.toastText;
+    this.primaryColor = coords.toastBackColor;
   }
 
   animationCreated($event){
@@ -21,6 +29,9 @@ export class ToastanimationPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
+
+    this.masterdiv.nativeElement.style.background = this.primaryColor;
+
     setTimeout(()=>{
       this.lottieAnimation.play();
 

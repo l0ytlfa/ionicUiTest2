@@ -59,6 +59,7 @@ export class Tab2Page implements OnInit, AfterViewInit, AfterContentInit {
   ngAfterContentInit(): void {
 
   }
+
   ngOnInit(): void {
     document.documentElement.style.setProperty('--deltax', '0px');
   }
@@ -105,25 +106,10 @@ export class Tab2Page implements OnInit, AfterViewInit, AfterContentInit {
       animated: true,
       enterAnimation: selectorPopoverWideAnimation,
       leaveAnimation: selectorPopoverWideAnimationExit,
-      //cssClass: 'popoverBackDropWide',
       size: 'auto'
     });
 
     await popover.present();
-
-    /*
-    //---> top most popover
-    const popover = await this.popoverController.create({
-      component: CategoryselectorPage,
-      event: $event,
-      showBackdrop: true,
-      animated: true,
-      enterAnimation: selectorAnimation,
-      cssClass: 'popoverBackDrop'
-    });
-
-    await popover.present();
-    */
 
   }
 
@@ -250,14 +236,18 @@ export class Tab2Page implements OnInit, AfterViewInit, AfterContentInit {
   gototoast($event) {
 
     this.internalSelectSlide(2);
-
     return;
 
     this.modalCtrl.create({
       component: ToastanimationPage,
       enterAnimation: toastAnimation,
       leaveAnimation: toastExitAnimation,
-      //cssClass: 'popoverBackDropDarker'
+      componentProps: {
+        coords: {
+         toastText: 'ordine creato con successo',
+         toastBackColor: 'green'
+        }
+      }
     }).then((modal) => {
       modal.present();
     });
