@@ -35,7 +35,7 @@ SwiperCore.use([FreeMode, Pagination]);
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
+export class Tab2Page implements OnInit, AfterViewInit, AfterContentInit {
 
   @ViewChild('cnt') CNT: any;
   @ViewChild('SWP') SWP: any;
@@ -56,14 +56,14 @@ export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
     }
   }
   ngAfterContentInit(): void {
-  
+
   }
   ngOnInit(): void {
     document.documentElement.style.setProperty('--deltax', '0px');
   }
 
-  ngAfterViewInit(){
-   
+  ngAfterViewInit() {
+
   }
 
   //-->long press dialog
@@ -152,7 +152,7 @@ export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
 
   //-----------------------------------------------------------------------
 
-  internalSelectSlide(idx: number){
+  internalSelectSlide(idx: number) {
 
     let swpr = this.SWP.swiperRef;
     let swprEl = this.SWP.elementRef.nativeElement;
@@ -179,44 +179,25 @@ export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
 
       let el = swprEl.querySelector('.movingTile');
 
-      if (el !== null) {
+      let br = el.getBoundingClientRect();
+      let tbr = swpr.slides[idx].getBoundingClientRect();
 
-        let br = el.getBoundingClientRect();
-        let tbr = swpr.slides[idx].getBoundingClientRect();
-  
-        let delta = br.x - tbr.x;
-        document.documentElement.style.setProperty('--deltax', delta + 'px');
-        document.documentElement.style.setProperty('--widthstart', (br.width - parseInt(window.getComputedStyle(el).marginRight)) + 'px');
-        document.documentElement.style.setProperty('--widthend', (tbr.width - parseInt(window.getComputedStyle(swpr.slides[idx]).marginRight)) + 'px');
-  
-  
-        el.classList.remove('movingTile');
-        swpr.slides[idx].classList.add('movingTile');
-        
-        el.classList.add('zindex999');
-        swpr.slides[idx].classList.remove('zindex999');
+      let delta = br.x - tbr.x;
+      document.documentElement.style.setProperty('--deltax', delta + 'px');
+      document.documentElement.style.setProperty('--widthstart', (br.width - parseInt(window.getComputedStyle(el).marginRight)) + 'px');
+      document.documentElement.style.setProperty('--widthend', (tbr.width - parseInt(window.getComputedStyle(swpr.slides[idx]).marginRight)) + 'px');
 
-      }else{
 
-          //--> first selection
-          let firstElement = swpr.slides[idx];
-          document.documentElement.style.setProperty('--deltax', '0px');
-          document.documentElement.style.setProperty('--widthstart', (firstElement.width - parseInt(window.getComputedStyle(firstElement).marginRight)) + 'px');
-          document.documentElement.style.setProperty('--widthend', (firstElement.width - parseInt(window.getComputedStyle(firstElement).marginRight)) + 'px');
+      el.classList.remove('movingTile');
+      swpr.slides[idx].classList.add('movingTile');
 
-          swpr.slides[idx].classList.add('movingTile');
-          swpr.slides[idx].classList.remove('zindex999');
-          
-      }
+      el.classList.add('zindex999');
+      swpr.slides[idx].classList.remove('zindex999');
 
     }
 
     swpr.slideTo(idx);
 
-  }
-
-  afterSwiperInit($event){
-    debugger;
   }
 
   //---> click slide select
@@ -255,7 +236,7 @@ export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
 
       el.classList.remove('movingTile');
       event[0].slides[event[0].clickedIndex].classList.add('movingTile');
-      
+
       el.classList.add('zindex999');
       event[0].slides[event[0].clickedIndex].classList.remove('zindex999');
 
@@ -270,12 +251,12 @@ export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
 
     return;
 
-  this.modalCtrl.create({
+    this.modalCtrl.create({
       component: ToastanimationPage,
       enterAnimation: toastAnimation,
       leaveAnimation: toastExitAnimation,
       //cssClass: 'popoverBackDropDarker'
-    }).then((modal)=>{
+    }).then((modal) => {
       modal.present();
     });
 
