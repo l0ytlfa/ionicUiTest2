@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 
 import { DetailspecialPage } from '../detailspecial/detailspecial.page';
@@ -35,7 +35,7 @@ SwiperCore.use([FreeMode, Pagination]);
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page implements OnInit , AfterViewInit, AfterContentInit{
 
   @ViewChild('cnt') CNT: any;
   @ViewChild('SWP') SWP: any;
@@ -55,8 +55,15 @@ export class Tab2Page implements OnInit {
       this.items.push({ r1: 'Sashimi ', r2: 'gustosi e convenienti', r3: 'description is long thing' });
     }
   }
+  ngAfterContentInit(): void {
+  
+  }
   ngOnInit(): void {
-    document.documentElement.style.setProperty('--deltax', '800px');
+    document.documentElement.style.setProperty('--deltax', '0px');
+  }
+
+  ngAfterViewInit(){
+   
   }
 
   //-->long press dialog
@@ -147,9 +154,69 @@ export class Tab2Page implements OnInit {
 
   internalSelectSlide(idx: number){
 
-    debugger;
     let swpr = this.SWP.swiperRef;
+    let swprEl = this.SWP.elementRef.nativeElement;
 
+    var el = swprEl.querySelector('.baseMovingTile');
+    if (el !== null) {
+
+      let br = el.getBoundingClientRect();
+      let tbr = swpr.slides[idx].getBoundingClientRect();
+
+      let delta = br.x - tbr.x;
+      document.documentElement.style.setProperty('--deltax', delta + 'px');
+      document.documentElement.style.setProperty('--widthstart', (br.width - parseInt(window.getComputedStyle(el).marginRight)) + 'px');
+      document.documentElement.style.setProperty('--widthend', (tbr.width - parseInt(window.getComputedStyle(swpr.slides[idx]).marginRight)) + 'px');
+
+
+      el.classList.remove('baseMovingTile');
+      swpr.slides[idx].classList.add('movingTile');
+
+      el.classList.add('zindex999');
+      swpr.slides[idx].classList.remove('zindex999');
+
+    } else {
+
+      let el = swprEl.querySelector('.movingTile');
+
+      if (el !== null) {
+
+        let br = el.getBoundingClientRect();
+        let tbr = swpr.slides[idx].getBoundingClientRect();
+  
+        let delta = br.x - tbr.x;
+        document.documentElement.style.setProperty('--deltax', delta + 'px');
+        document.documentElement.style.setProperty('--widthstart', (br.width - parseInt(window.getComputedStyle(el).marginRight)) + 'px');
+        document.documentElement.style.setProperty('--widthend', (tbr.width - parseInt(window.getComputedStyle(swpr.slides[idx]).marginRight)) + 'px');
+  
+  
+        el.classList.remove('movingTile');
+        swpr.slides[idx].classList.add('movingTile');
+        
+        el.classList.add('zindex999');
+        swpr.slides[idx].classList.remove('zindex999');
+
+      }else{
+
+          //--> first selection
+          let firstElement = swpr.slides[idx];
+          document.documentElement.style.setProperty('--deltax', '0px');
+          document.documentElement.style.setProperty('--widthstart', (firstElement.width - parseInt(window.getComputedStyle(firstElement).marginRight)) + 'px');
+          document.documentElement.style.setProperty('--widthend', (firstElement.width - parseInt(window.getComputedStyle(firstElement).marginRight)) + 'px');
+
+          swpr.slides[idx].classList.add('movingTile');
+          swpr.slides[idx].classList.remove('zindex999');
+          
+      }
+
+    }
+
+    swpr.slideTo(idx);
+
+  }
+
+  afterSwiperInit($event){
+    debugger;
   }
 
   //---> click slide select

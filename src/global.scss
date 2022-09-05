@@ -195,7 +195,8 @@ ion-tab-button:focus {
 
 	100% {
 		transform: translate(0, 0);
-		width: var(--widthend);
+		//width: var(--widthend);
+		width: 97%;
 	}
 }
 
@@ -214,7 +215,7 @@ ion-tab-button:focus {
 	animation-direction: normal;
 	animation-fill-mode: both;
 	animation-timing-function: ease-in-out;
-	margin-left: 0.55em;
+	//margin-left: 0.55em;
 }
 
 .zindex999 {
