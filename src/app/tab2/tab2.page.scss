@@ -77,7 +77,7 @@ ion-fab{
 
 .baseMovingTile::after {
 	content: ".";
-	width: 100%;
+	width: 85%;
 	height: 45%;
 	color: green;
 	position: absolute;
@@ -93,8 +93,8 @@ ion-fab{
   background: transparent;
     white-space: nowrap;
     font-size: 0.8em;
-    padding-left: 1.4em;
-    padding-right: 0.5em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
     z-index: 100;
     color: green;
 }

@@ -145,7 +145,6 @@ export class Tab2Page implements OnInit {
 
   clickSlide(event) {
 
-
     var el = event[0].$wrapperEl[0].querySelector('.baseMovingTile');
     if (el !== null) {
 
@@ -154,8 +153,8 @@ export class Tab2Page implements OnInit {
 
       let delta = br.x - tbr.x;
       document.documentElement.style.setProperty('--deltax', delta + 'px');
-      document.documentElement.style.setProperty('--widthstart', br.width + 'px');
-      document.documentElement.style.setProperty('--widthend', tbr.width + 'px');
+      document.documentElement.style.setProperty('--widthstart', (br.width - parseInt(window.getComputedStyle(el).marginRight)) + 'px');
+      document.documentElement.style.setProperty('--widthend', (tbr.width - parseInt(window.getComputedStyle(event[0].slides[event[0].clickedIndex]).marginRight)) + 'px');
 
 
       el.classList.remove('baseMovingTile');
@@ -173,8 +172,8 @@ export class Tab2Page implements OnInit {
 
       let delta = br.x - tbr.x;
       document.documentElement.style.setProperty('--deltax', delta + 'px');
-      document.documentElement.style.setProperty('--widthstart', br.width + 'px');
-      document.documentElement.style.setProperty('--widthend', tbr.width + 'px');
+      document.documentElement.style.setProperty('--widthstart', (br.width - parseInt(window.getComputedStyle(el).marginRight)) + 'px');
+      document.documentElement.style.setProperty('--widthend', (tbr.width - parseInt(window.getComputedStyle(event[0].slides[event[0].clickedIndex]).marginRight)) + 'px');
 
 
       el.classList.remove('movingTile');
