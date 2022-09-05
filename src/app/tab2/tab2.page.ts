@@ -143,6 +143,16 @@ export class Tab2Page implements OnInit {
 
   }
 
+  //-----------------------------------------------------------------------
+
+  internalSelectSlide(idx: number){
+
+    debugger;
+    let swpr = this.SWP.swiperRef;
+
+  }
+
+  //---> click slide select
   clickSlide(event) {
 
     var el = event[0].$wrapperEl[0].querySelector('.baseMovingTile');
@@ -188,6 +198,10 @@ export class Tab2Page implements OnInit {
   }
 
   gototoast($event) {
+
+    this.internalSelectSlide(2);
+
+    return;
 
   this.modalCtrl.create({
       component: ToastanimationPage,
