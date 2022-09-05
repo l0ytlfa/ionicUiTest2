@@ -5,9 +5,6 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { DetailspecialPage } from '../detailspecial/detailspecial.page';
 import { popupEnterAnimation } from '../detailspecial/popoveranimation';
 
-import { CategoryselectorPage } from '../categoryselectorpopover/categoryselector.page';
-import { popupEnterAnimation as selectorAnimation } from '../categoryselectorpopover/popoveranimation';
-
 import { CategoryselectopopoverwidePage } from '../categoryselectopopoverwide/categoryselectopopoverwide.page';
 import { popupEnterAnimation as selectorPopoverWideAnimation } from '../categoryselectopopoverwide/popoveranimation';
 import { popupExitAnimation as selectorPopoverWideAnimationExit } from '../categoryselectopopoverwide/popoveranimationExit';
@@ -253,43 +250,5 @@ export class Tab2Page implements OnInit, AfterViewInit, AfterContentInit {
     });
 
   }
-
-  onSlideChange($event) {
-
-
-    console.log('RI>>> ' + $event[0].activeIndex + ' PI>>> ' + $event[0].previousIndex);
-
-    // previousIndex: 0   activeIndex
-    //$event[0].slides[0].children[0].getBoundingClientRect() 
-    let deltaX = $event[0].slides[$event[0].realIndex].children[0].getBoundingClientRect().x - $event[0].slides[$event[0].previousIndex].children[0].getBoundingClientRect().x;
-
-    let css = this.styleService.cssStyleSheet;
-
-    //debugger;
-
-  }
-  /*    const cr = $event.currentTarget.childNodes[0].getClientRects()[0];  //<-- get image ref
-  
-      //--> get scroll container of parent
-      this.scrollElement = await this.CNT.getScrollElement();
-  
-      this.modalCtrl.create({
-        component: CategoryselectorPage,
-        enterAnimation: selectorAnimation,
-        componentProps: {
-          coords:{
-            x: cr.x,
-            y: cr.y,
-            w: cr.width,
-            h: cr.height,
-            clientHeight: this.scrollElement.clientHeight,
-            itemY: $event.currentTarget.getBoundingClientRect().y,
-            outContainer: this.CNT
-          }
-        }
-      }).then((modal)=>{
-        modal.present();
-      });*/
-
 
 }
