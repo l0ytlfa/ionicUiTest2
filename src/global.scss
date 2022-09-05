@@ -87,9 +87,12 @@ ion-tab-button:focus {
 }
 
 .popoverBackDropWide {
-	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);
 	--width: 80%;
 	--background: #111;
+}
+
+.popoverBackDropWideFilter{
+	backdrop-filter: blur(2px) grayscale(40%) brightness(50%);
 }
 
 

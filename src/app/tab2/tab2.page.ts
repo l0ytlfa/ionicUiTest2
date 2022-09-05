@@ -10,6 +10,7 @@ import { popupEnterAnimation as selectorAnimation } from '../categoryselectorpop
 
 import { CategoryselectopopoverwidePage } from '../categoryselectopopoverwide/categoryselectopopoverwide.page';
 import { popupEnterAnimation as selectorPopoverWideAnimation } from '../categoryselectopopoverwide/popoveranimation';
+import { popupExitAnimation as selectorPopoverWideAnimationExit } from '../categoryselectopopoverwide/popoveranimationExit';
 
 import { PopupnewsPage } from '../popupnews/popupnews.page';
 import { popupEnterAnimation as newsAnimation } from '../popupnews/popovernewsanimation';
@@ -103,7 +104,8 @@ export class Tab2Page implements OnInit, AfterViewInit, AfterContentInit {
       showBackdrop: true,
       animated: true,
       enterAnimation: selectorPopoverWideAnimation,
-      cssClass: 'popoverBackDropWide',
+      leaveAnimation: selectorPopoverWideAnimationExit,
+      //cssClass: 'popoverBackDropWide',
       size: 'auto'
     });
 
