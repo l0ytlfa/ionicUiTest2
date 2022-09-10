@@ -114,13 +114,13 @@
 
 
  
-  <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="80" minBufferPx="720" maxBufferPx="800" #VSE style="height:100vh !important" >
+  <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="132" minBufferPx="720" maxBufferPx="800" #VSE style="height:100vh !important" >
     <div class="spacer" [style.height]="'18em'" #SPACER [style.margin-bottom]="'0em'"></div>
 
     <ion-list>
       <span *cdkVirtualFor="let item of items; let odd = odd; let i = index">
        
-         <ion-list-header [style.color]="'white'" [style.height]="'72px'" *ngIf="i===10"  [style.margin-top]="'8px'">
+         <ion-list-header [style.color]="'white'" [style.height]="'124px'" *ngIf="i===10"  [style.margin-top]="'8px'">
           <span [style.height]="'100%'">
           <h2 [style.color]="'white'" [style.margin-bottom]="'0px'"  [style.margin-top]="'0.2em'">{{item.r1}}</h2>
           <span [style.color]="'darkgray'" [style.font-size]="'0.7em'">here my special category for all</span>
@@ -128,7 +128,7 @@
         </span>
         </ion-list-header> 
 
-        <ion-item [style.height]="'80px'" *ngIf="i!==10" (click)="onListItemClick($event)">
+        <ion-item [style.height]="'132px'" *ngIf="i!==10" (click)="onListItemClick($event)">
 
           <!-- must store at loaded image on template ref (local of every ngFor item!) a loaded attribute to put condition over loader-->
           <ion-img src="https://images6.alphacoders.com/941/941929.jpg" style="width: 30%;padding-right: 1em;border-radius:2em" (ionImgWillLoad)="lclimg.loaded = false" (ionImgDidLoad)="lclimg.loaded = true" 
@@ -138,7 +138,7 @@
           <div class="profilePic animate" *ngIf="!lclimg.loaded"></div>
 
           <ion-label>
-            <h2 [style.color]="'white'">{{item.r1}}</h2>
+            <h2 [style.color]="'white'">{{item.r1}} - {{i}}</h2>
             <h3 [style.color]="'white'">{{item.r2}}</h3>
             <p [style.color]="'darkgrey'">{{item.r3}}.</p>
           </ion-label>
