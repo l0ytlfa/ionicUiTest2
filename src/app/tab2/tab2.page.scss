@@ -102,3 +102,35 @@ ion-fab{
     padding-left: 0.3em;
     padding-right: 0.3em;
 }
+
+
+
+//-----------------> 
+
+.mirrorContainer {
+	width: max-content;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	pointer-events: none;
+	padding: 0 10px;
+}
+/* original design */
+.mirrorContainer > * {
+	font: bolder 2rem/2.6rem "Arial";	
+	-webkit-background-clip: text;
+  background-clip: text;
+	color: #225082;
+	overflow: hidden;
+}
+/* reflections */
+.mirrorContainer > :last-child {
+	transform: rotatex(180deg) translatey(15px);
+	color: lightgray
+}
+
+.mirrorContainer:first-of-type > :last-child {
+	--gradient: linear-gradient(transparent 40%, white 90%);
+	-webkit-mask-image: var(--gradient);
+	mask-image: var(--gradient);
+}
