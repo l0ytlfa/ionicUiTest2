@@ -36,29 +36,18 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
     const coords = this.navParams.get('coords');
     this.popupVars = coords;
 
-    this.renderer.setStyle(this.headerImage.nativeElement, 'width', coords.w + 'px');
-    this.renderer.setStyle(this.headerImage.nativeElement, 'height', coords.h + 'px');
-    this.renderer.setStyle(this.headerImage.nativeElement, 'transform', `translate3d(${coords.x}px, ${coords.y - 56}px, 0) scale3d(1, 1, 1)`);
+
+    this.renderer.setStyle(this.headerImage.nativeElement, 'transform', `translate3d(-150px, ${coords.y - 56}px, 0) scale3d(0.2, 0.2, 1)`);
+    this.renderer.setStyle(this.headerImage.nativeElement, 'transition', '0.2s ease-in-out');
 
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transform', `translate3d(${coords.x}px, ${Math.trunc(coords.clientHeight/1.75)}px, 0)`);
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'opacity','0');
-
-    this.renderer.setStyle(this.headerImage.nativeElement, 'transition', '0.2s ease-in-out');
     this.renderer.setStyle(this.buttonsDiv.nativeElement , 'transition', '0.2s ease-out');
 
     setTimeout(() => {
 
       //--> "move" image
       const timing = 200;
-      const an1 = this.animationCtrl.create()
-        .addElement(this.headerImage.nativeElement)
-        .to('width', '90%')
-        .duration(timing);
-
-      const an2 = this.animationCtrl.create()
-        .addElement(this.headerImage.nativeElement)
-        .to('height', '50%')
-        .duration(timing);
 
       const an3 = this.animationCtrl.create()
         .addElement(this.headerImage.nativeElement)
@@ -67,11 +56,11 @@ export class DetailspecialPage implements OnInit, AfterViewInit {
 
       const an4 = this.animationCtrl.create()
       .addElement( coords.outContainer)
-      .to('transform', 'scale3d(0.97,0.97,0.97)')
+      .to('transform', 'scale3d(0.8,0.8,1)')
       .duration(timing);
 
 
-      this.animationCtrl.create().addAnimation([an1, an2,an3,an4]).play().then(() => {
+      this.animationCtrl.create().addAnimation([an3,an4]).play().then(() => {
         this.renderer.setStyle(this.headerImage.nativeElement, 'border-radius', '1em');
 
         //--> appear buttons
