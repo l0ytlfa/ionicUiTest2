@@ -8,6 +8,10 @@ export const popupEnterAnimation = (baseEl: HTMLElement, options?: any): Animati
   let originY = 'top';
   let originX = 'left';
 
+  baseEl.classList.add('popoverBackDropWide');
+  baseEl.classList.add('popoverBackDropWideFilter');
+  
+
   const contentEl = baseEl.shadowRoot.querySelector('.popover-content') as HTMLElement;
 
   const contentDimentions = contentEl.getBoundingClientRect();

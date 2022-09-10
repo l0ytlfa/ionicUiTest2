@@ -2,9 +2,10 @@
 
   <div class="flexContainerPopover">
 
-      <div class="showDiv" style="transform:translate3d(0,+10em,0)">
-        <ng-lottie [options]="{path: '../../assets/94433-green-success-confirmation.json',autoplay: false}" (animationCreated)="animationCreated($event)" class="animationStyle" #lottie></ng-lottie>
-        <div class="toastText">aggiunto a carrello !</div>
+      <div class="showDiv" style="transform:translate3d(0,+10em,0)" #masterdiv>
+        <ng-lottie [options]="{path: '../../assets/94433-green-success-confirmation.json',autoplay: false}" 
+          (animationCreated)="animationCreated($event)" class="animationStyle" #lottie></ng-lottie>
+        <div class="toastText">{{primaryText}}</div>
       </div>
 
   </div>
