@@ -110,14 +110,22 @@ ion-fab{
 @keyframes mirrorMove {
   0% {
     transform: translate3d(-100px,0,0);
-    opacity: 0.1;
+    
   }
   100% {
     transform: translate3d(0,0,0);
-    opacity: 1;
+    
   }
 }
 
+@keyframes mirrorMoveShowReflection {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .mirrorContainer {
 	width: max-content;
@@ -143,6 +151,9 @@ ion-fab{
 	transform: rotatex(180deg) translatey(15px);
 	color: lightgray;
   letter-spacing: 0.07em;
+  animation: mirrorMoveShowReflection 0.7s forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
 }
 
 .mirrorContainer:first-of-type > :last-child {
