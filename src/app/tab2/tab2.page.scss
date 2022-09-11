@@ -121,12 +121,14 @@ ion-fab{
 	-webkit-background-clip: text;
   background-clip: text;
 	color: #225082;
+  letter-spacing: 0.07em;
 	overflow: hidden;
 }
 /* reflections */
 .mirrorContainer > :last-child {
 	transform: rotatex(180deg) translatey(15px);
-	color: lightgray
+	color: lightgray;
+  letter-spacing: 0.07em;
 }
 
 .mirrorContainer:first-of-type > :last-child {
