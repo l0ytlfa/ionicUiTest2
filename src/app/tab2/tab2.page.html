@@ -119,12 +119,12 @@
 
 
 
-  <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="132" minBufferPx="720" maxBufferPx="800" #VSE
+  <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="132" minBufferPx="1000" maxBufferPx="1200" #VSE
     style="height:100vh !important">
     <div class="spacer" [style.height]="'18em'" #SPACER [style.margin-bottom]="'0em'"></div>
 
     <ion-list>
-      <span *cdkVirtualFor="let item of items; let odd = odd; let i = index">
+      <span *cdkVirtualFor="let item of items; let odd = odd; let i = index" [style.height]="'132px'">
 
         <ion-list-header [style.color]="'white'" [style.height]="'124px'" *ngIf="i===10" [style.margin-top]="'8px'">
           <span [style.height]="'100%'">
