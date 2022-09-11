@@ -110,7 +110,7 @@ ion-fab{
 @keyframes mirrorMove {
   0% {
     transform: translate3d(-100px,0,0);
-    opacity: 0.2;
+    opacity: 0.1;
   }
   100% {
     transform: translate3d(0,0,0);
@@ -126,7 +126,8 @@ ion-fab{
 	-webkit-user-select: none;
 	pointer-events: none;
 	padding: 0 10px;
-  animation: mirrorMove 2.0s forwards;
+  animation: mirrorMove 0.8s forwards;
+  animation-timing-function: ease-out;
 }
 /* original design */
 .mirrorContainer > * {
